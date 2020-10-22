@@ -22,7 +22,6 @@ namespace Proyecto_Naval
                     tablero[f,c] =  " " + " - " + " ";
                     //Posicion de barco
                     tablero[2, 5] = instancia.barco;
-                   // Console.WriteLine("posicion"+"[ "+ f +","+ c +" ]");
                     //Como se separara los caracteres
                     Console.Write(" | " +tablero[f,c]+ " | ");
                 }
