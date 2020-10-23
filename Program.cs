@@ -62,11 +62,11 @@ namespace Proyecto_Naval
                         //Validacion barco 1
                             //Validacion de que no quepa
                     if(bx1 >= matrizJugador.GetLength(0) || by1 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no cabe");
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
                     }else{ 
                         //Validacion de que no este repetido
                         if(bx1 == bx2 && bx1 == bx3 && bx1 == bx4 && bx1 == bx5 && by1 == by2 && by1 == by3 && by1 == by4 && by1 == by5){
-                            Console.WriteLine("Parece que el barco esta duplicado");
+                            Console.WriteLine("Parece que el barco no.1 esta duplicado");
 
                         }else{
                             //Validacion de que sea 2,3 y 4
@@ -77,18 +77,18 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj1[3]) == 4){
                                 matrizJugador[bx1,by1]=" B ";
                             }else{
-                                Console.WriteLine("Fuera de rango");
+                                Console.WriteLine("Fuera de rango barco no. 1");
                             }
                         }
                     }
                     //Validacion barco 2
                         //Validacion de que no quepa
                     if(bx2 >= matrizJugador.GetLength(0) || by2 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no cabe");
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
                     }else{
                         //Validacion de que no este repetido
                          if(bx2 == bx1 && bx2 == bx3 && bx2 == bx4 && bx2 == bx5 && by2 == by1 && by2 == by3 && by2 == by4 && by2 == by5){
-                            Console.WriteLine("Parece que el barco esta duplicado");
+                            Console.WriteLine("Parece que el barco no.2 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj2[3]) == 2){
@@ -98,18 +98,18 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj2[3]) == 4){
                                 matrizJugador[bx2,by2]=" B ";
                             }else{
-                                Console.WriteLine("Fuera de rango");
+                                Console.WriteLine("Fuera de rango barco no. 2");
                             }
                         }
                     }
                     //Validacion barco 3
                         //Validacion de que no quepa
                     if(bx3 >= matrizJugador.GetLength(0) || by3 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no cabe");
+                        Console.WriteLine("Parece que el barco no.3 no cabe en el tablero");
                     }else{
                             //Validacion de que no este repetido
                          if(bx3 == bx1 && bx3 == bx2 && bx3 == bx4 && bx3 == bx5 && by3 == by1 && by3 == by2 && by3 == by4 && by3 == by5){
-                            Console.WriteLine("Parece que el barco esta duplicado");
+                            Console.WriteLine("Parece que el barco no.3 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj3[3]) == 2){
@@ -119,18 +119,18 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj3[3]) == 4){
                                 matrizJugador[bx3,by3]=" B ";
                             }else{
-                                Console.WriteLine("Fuera de rango");
+                                Console.WriteLine("Fuera de rango barco no. 3");
                             }
                         }
                     }
                     //Validacion barco 4
                         //Validacion de que no quepa
                     if(bx4 >= matrizJugador.GetLength(0) || by4 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no cabe");
+                        Console.WriteLine("Parece que el barco no.4 no cabe en el tablero");
                     }else{
                             //Validacion de que no este repetido
                          if(bx4 == bx1 && bx4 == bx2 && bx4 == bx3 && bx4 == bx5 && by4 == by1 && by4 == by2 && by4 == by3 && by4 == by5){
-                            Console.WriteLine("Parece que el barco esta duplicado");
+                            Console.WriteLine("Parece que el barco no.4 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj4[3]) == 2){
@@ -140,18 +140,18 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj4[3]) == 4){
                             matrizJugador[bx4,by4]=" B ";
                             }else{
-                                Console.WriteLine("Fuera de rango");
+                                Console.WriteLine("Fuera de rango barco no. 4");
                             }
                         }
                     }
                     //Validacion barco 5
                         //Validacion de que no quepa
                     if(bx5 >= matrizJugador.GetLength(0) || by5 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no cabe");
+                        Console.WriteLine("Parece que el barco no.5 no cabe en el tablero");
                     }else{
                         //Validacion de que no este repetido
                         if(bx5 == bx1 && bx5 == bx2 && bx5 == bx3 && bx5 == bx4 && by5 == by1 && by5 == by2 && by5 == by3 && by5 == by4){
-                            Console.WriteLine("Parece que el barco esta duplicado");
+                            Console.WriteLine("Parece que el barco no.5 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj4[3]) == 2){
@@ -161,7 +161,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj4[3]) == 4){
                             matrizJugador[bx5,by5]=" B ";
                             }else{
-                                Console.WriteLine("Fuera de rango");
+                                Console.WriteLine("Fuera de rango barco no. 5");
                             }
                         }
                     }
