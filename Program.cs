@@ -35,16 +35,33 @@ namespace Proyecto_Naval
         } 
         public static void matrizJugador(){
             Program instancia = new Program();
-            string[,] matrizJugador =  new string[10,9];   
+            string[,] matrizJugador =  new string[10,9+1];   
             for (int f = 0; f < matrizJugador.GetLength(0); f++){
                 Console.Write(f + " | ");
-                for (int c = 0; c < matrizJugador.GetLength(1); c++){
+                for (int c = 1; c < matrizJugador.GetLength(1); c++){
                     //Valor de la tabla inicial
                     matrizJugador[f,c] = " . ";
                     //Como se separara los caracteres
-                    int x = int.Parse(instancia.barcoj1[0]);
-                    int y = int.Parse(instancia.barcoj1[1]);
-                    matrizJugador[x,y]=" - ";
+                    //Barco 1
+                    int bx1 = int.Parse(instancia.barcoj1[0]);
+                    int by1 = int.Parse(instancia.barcoj1[1]);
+                    //Barco 2
+                    int bx2 = int.Parse(instancia.barcoj2[0]);
+                    int by2 = int.Parse(instancia.barcoj2[1]);
+                    //Barco 3
+                    int bx3 = int.Parse(instancia.barcoj3[0]);
+                    int by3 = int.Parse(instancia.barcoj3[1]);
+                    //Barco 4
+                    int bx4 = int.Parse(instancia.barcoj4[0]);
+                    int by4 = int.Parse(instancia.barcoj4[1]);
+                    //Barco 5
+                    int bx5 = int.Parse(instancia.barcoj5[0]);
+                    int by5 = int.Parse(instancia.barcoj5[1]);
+                    matrizJugador[bx1,by1]=" b ";
+                    matrizJugador[bx2,by2]=" b ";
+                    matrizJugador[bx3,by3]=" b ";
+                    matrizJugador[bx4,by4]=" b ";
+                    matrizJugador[bx5,by5]=" b ";
                     Console.Write(matrizJugador[f,c]);
                 }
                 Console.WriteLine();
