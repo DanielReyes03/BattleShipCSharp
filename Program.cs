@@ -3,18 +3,79 @@
 namespace Proyecto_Naval
 {
     class Program
-    {
+    {   
+        private Boolean valfinJuego;
         private string barco = "barco";
+        private string[] jugador = {"0","","3"};
+        private string[] oponente = {"0","","3"};
         private string[] barcoj1 = {"2","2","H","4"};
         private string[] barcoj2 = {"6","1","H","4"};
         private string[] barcoj3 = {"8","5","H","2"};
         private string[] barcoj4 = {"2","8","V","3"};
         private string[] barcoj5 = {"6","9","V","4"};
+        private string[] barcoO1 = {"3","2","H","2"};
+        private string[] barcoO2 = {"5","1","H","3"};
+        private string[] barcoO3 = {"4","5","H","4"};
+        private string[] barcoO4 = {"1","8","V","2"};
+        private string[] barcoO5 = {"3","9","V","2"};
 
         static void Main(string[] args)
         {
-            matrizJugador();
+            GenerarJuego();
         }
+        public static void Menu(){
+            Console.WriteLine("Hola bienvenido a Battle Ship");
+            Console.WriteLine("Que deseas hacer hoy ?");
+            Console.WriteLine("1. Jugar");
+            Console.WriteLine("2. Como jugar");
+            Console.WriteLine("3. Salir");
+            int decision = int.Parse(Console.ReadLine());
+            switch (decision)
+            {
+                case 1:
+                    ObtenerDatos();
+                break;
+                case 2:
+                    Console.WriteLine("Lorem");
+                    Console.WriteLine("Deseas jugar ?");
+                    string jugar = Console.ReadLine().ToLower();
+                    if(jugar == "si"){
+                        ObtenerDatos();
+                    }else{
+                        Console.Clear();
+                        Menu();
+                    }
+                break;
+                case 3:
+                    Environment.Exit(0);
+                break;
+                default:
+                    Console.WriteLine("Esta opcion no es valida :(");
+                    Console.Clear();
+                    Menu();
+                break;
+            }
+        }
+        
+        public static void ObtenerDatos(){
+            Program jugadores = new Program();
+            Console.Clear();
+            Console.WriteLine("Dime tu nombre, tu seras el jugador");
+            jugadores.jugador[1] = Console.ReadLine().ToLower();
+            Console.WriteLine("Dime tu nombre, tu seras el oponente");
+            jugadores.oponente[1] = Console.ReadLine().ToLower();
+            Console.Clear();
+            Console.WriteLine("Listo, Bienvendidos ");
+            Console.WriteLine("Hola " + jugadores.jugador[1] + " Tu puntaje inicial es " + jugadores.jugador[0]);
+            Console.WriteLine("Hola " + jugadores.oponente[1] + " Tu puntaje inicial es " + jugadores.oponente[0]);
+            GenerarJuego();
+        }
+        public static void GenerarJuego(){
+            Program instancia = new Program();
+            while (int.Parse(instancia.jugador[2]) != 0 && int.Parse(instancia.oponente[2]) != 0){
+                
+            }
+        } 
 
         public static void matrizInicial(){
             Program instancia = new Program();
@@ -170,26 +231,167 @@ namespace Proyecto_Naval
                 Console.WriteLine();
             }
         }
+        public static void matrizOponente(){
+            Program instancia = new Program();
+            int filas = 10;
+            int columnas = 9;
+            string[,] matrizOponente =  new string[filas+1,columnas+1];   
+            for (int f = 1; f < matrizOponente.GetLength(0); f++){
+                Console.Write(f + " | ");
+                for (int c = 1; c < matrizOponente.GetLength(1); c++){
+                    //Valor de la tabla inicial
+                    matrizOponente[f,c] = " . ";
+                    //Variables de barcos
+                    int bxo1 = int.Parse(instancia.barcoO1[0]);
+                    int byo1 = int.Parse(instancia.barcoO1[1]);
+                    //Barco 2
+                    int bxo2 = int.Parse(instancia.barcoO2[0]);
+                    int byo2 = int.Parse(instancia.barcoO2[1]);
+                    //Barco 3
+                    int bxo3 = int.Parse(instancia.barcoO3[0]);
+                    int byo3 = int.Parse(instancia.barcoO3[1]);
+                    //Barco 4
+                    int bxo4 = int.Parse(instancia.barcoO4[0]);
+                    int byo4 = int.Parse(instancia.barcoO4[1]);
+                    //Barco 5
+                    int bxo5 = int.Parse(instancia.barcoO5[0]);
+                    int byo5 = int.Parse(instancia.barcoO5[1]);
+                    //Validaciones para imprimir los barcos
+                        //Validacion barco 1
+                            //Validacion de que no quepa
+                    if(bxo1 >= matrizOponente.GetLength(0) || byo1 >= matrizOponente.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
+                    }else{ 
+                        //Validacion de que no este repetido
+                        if(bxo1 == bxo2 && bxo1 == bxo3 && bxo1 == bxo4 && bxo1 == bxo5 && byo1 == byo2 && byo1 == byo3 && byo1 == byo4 && byo1 == byo5){
+                            Console.WriteLine("Parece que el barco no.1 esta duplicado");
+
+                        }else{
+                            //Validacion de que sea 2,3 y 4
+                            if(int.Parse(instancia.barcoj1[3]) == 2){
+                               matrizOponente[bxo1,byo1]=" B ";
+                            }else if(int.Parse(instancia.barcoj1[3]) == 3){
+                               matrizOponente[bxo1,byo1]=" B ";
+                            }else if(int.Parse(instancia.barcoj1[3]) == 4){
+                                matrizOponente[bxo1,byo1]=" B ";
+                            }else{
+                                Console.WriteLine("Fuera de rango barco no. 1");
+                            }
+                        }
+                    }
+                    //Validacion barco 2
+                        //Validacion de que no quepa
+                    if(bxo2 >= matrizOponente.GetLength(0) || byo2 >= matrizOponente.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
+                    }else{
+                        //Validacion de que no este repetido
+                         if(bxo2 == bxo1 && bxo2 == bxo3 && bxo2 == bxo4 && bxo2 == bxo5 && byo2 == byo1 && byo2 == byo3 && byo2 == byo4 && byo2 == byo5){
+                            Console.WriteLine("Parece que el barco no.2 esta duplicado");
+                        }else{
+                            //Validacion de que sea 2,3 y 4
+                            if(int.Parse(instancia.barcoj2[3]) == 2){
+                                matrizOponente[bxo2,byo2]=" B ";
+                            }else if(int.Parse(instancia.barcoj2[3]) == 3){
+                                matrizOponente[bxo2,byo2]=" B ";
+                            }else if(int.Parse(instancia.barcoj2[3]) == 4){
+                                matrizOponente[bxo2,byo2]=" B ";
+                            }else{
+                                Console.WriteLine("Fuera de rango barco no. 2");
+                            }
+                        }
+                    }
+                    //Validacion barco 3
+                        //Validacion de que no quepa
+                    if(bxo3 >= matrizOponente.GetLength(0) || byo3 >= matrizOponente.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.3 no cabe en el tablero");
+                    }else{
+                            //Validacion de que no este repetido
+                         if(bxo3 == bxo1 && bxo3 == bxo2 && bxo3 == bxo4 && bxo3 == bxo5 && byo3 == byo1 && byo3 == byo2 && byo3 == byo4 && byo3 == byo5){
+                            Console.WriteLine("Parece que el barco no.3 esta duplicado");
+                        }else{
+                            //Validacion de que sea 2,3 y 4
+                            if(int.Parse(instancia.barcoj3[3]) == 2){
+                                matrizOponente[bxo3,byo3]=" B ";
+                            }else if(int.Parse(instancia.barcoj3[3]) == 3){
+                                matrizOponente[bxo3,byo3]=" B ";                                                        
+                            }else if(int.Parse(instancia.barcoj3[3]) == 4){
+                                matrizOponente[bxo3,byo3]=" B ";
+                            }else{
+                                Console.WriteLine("Fuera de rango barco no. 3");
+                            }
+                        }
+                    }
+                    //Validacion barco 4
+                        //Validacion de que no quepa
+                    if(bxo4 >= matrizOponente.GetLength(0) || byo4 >= matrizOponente.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.4 no cabe en el tablero");
+                    }else{
+                            //Validacion de que no este repetido
+                         if(bxo4 == bxo1 && bxo4 == bxo2 && bxo4 == bxo3 && bxo4 == bxo5 && byo4 == byo1 && byo4 == byo2 && byo4 == byo3 && byo4 == byo5){
+                            Console.WriteLine("Parece que el barco no.4 esta duplicado");
+                        }else{
+                            //Validacion de que sea 2,3 y 4
+                            if(int.Parse(instancia.barcoj4[3]) == 2){
+                            matrizOponente[bxo4,byo4]=" B ";
+                            }else if(int.Parse(instancia.barcoj4[3]) == 3){
+                            matrizOponente[bxo4,byo4]=" B ";                                                      
+                            }else if(int.Parse(instancia.barcoj4[3]) == 4){
+                            matrizOponente[bxo4,byo4]=" B ";
+                            }else{
+                                Console.WriteLine("Fuera de rango barco no. 4");
+                            }
+                        }
+                    }
+                    //Validacion barco 5
+                        //Validacion de que no quepa
+                    if(bxo5 >= matrizOponente.GetLength(0) || byo5 >= matrizOponente.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.5 no cabe en el tablero");
+                    }else{
+                        //Validacion de que no este repetido
+                        if(bxo5 == bxo1 && bxo5 == bxo2 && bxo5 == bxo3 && bxo5 == bxo4 && byo5 == byo1 && byo5 == byo2 && byo5 == byo3 && byo5 == byo4){
+                            Console.WriteLine("Parece que el barco no.5 esta duplicado");
+                        }else{
+                            //Validacion de que sea 2,3 y 4
+                            if(int.Parse(instancia.barcoj4[3]) == 2){
+                            matrizOponente[bxo5,byo5]=" B ";
+                            }else if(int.Parse(instancia.barcoj4[3]) == 3){
+                            matrizOponente[bxo5,byo5]=" B ";                                               
+                            }else if(int.Parse(instancia.barcoj4[3]) == 4){
+                            matrizOponente[bxo5,byo5]=" B ";
+                            }else{
+                                Console.WriteLine("Fuera de rango barco no. 5");
+                            }
+                        }
+                    }
+                    Console.Write(matrizOponente[f,c]);
+                }
+                Console.WriteLine();
+            }
+        }
+    
+    
+    
+    
     // //Por si sirve
-    //                 int bx1 = int.Parse(instancia.barcoj1[0]);
-    //                 int by1 = int.Parse(instancia.barcoj1[1]);
+    //                 int bxo1 = int.Parse(instancia.barcoj1[0]);
+    //                 int byo1 = int.Parse(instancia.barcoj1[1]);
     //                 //Barco 2
-    //                 int bx2 = int.Parse(instancia.barcoj2[0]);
-    //                 int by2 = int.Parse(instancia.barcoj2[1]);
+    //                 int bxo2 = int.Parse(instancia.barcoj2[0]);
+    //                 int byo2 = int.Parse(instancia.barcoj2[1]);
     //                 //Barco 3
-    //                 int bx3 = int.Parse(instancia.barcoj3[0]);
-    //                 int by3 = int.Parse(instancia.barcoj3[1]);
+    //                 int bxo3 = int.Parse(instancia.barcoj3[0]);
+    //                 int byo3 = int.Parse(instancia.barcoj3[1]);
     //                 //Barco 4
-    //                 int bx4 = int.Parse(instancia.barcoj4[0]);
-    //                 int by4 = int.Parse(instancia.barcoj4[1]);
+    //                 int bxo4 = int.Parse(instancia.barcoj4[0]);
+    //                 int byo4 = int.Parse(instancia.barcoj4[1]);
     //                 //Barco 5
-    //                 int bx5 = int.Parse(instancia.barcoj5[0]);
-    //                 int by5 = int.Parse(instancia.barcoj5[1]);
-    //                 matrizJugador[bx1,by1]=" B ";
-    //                 matrizJugador[bx2,by2]=" B ";
-    //                 matrizJugador[bx3,by3]=" B ";
-    //                 matrizJugador[bx4,by4]=" B ";
-    //                 matrizJugador[bx5,by5]=" B ";
+    //                 int bxo5 = int.Parse(instancia.barcoj5[0]);
+    //                 int byo5 = int.Parse(instancia.barcoj5[1]);
+    //                 matrizOponente[bxo1,byo1]=" B ";
+    //                 matrizOponente[bxo2,byo2]=" B ";
+    //                 matrizOponente[bxo3,byo3]=" B ";
+    //                 matrizOponente[bxo4,byo4]=" B ";
+    //                 matrizOponente[bxo5,byo5]=" B ";
 
     }
 }
