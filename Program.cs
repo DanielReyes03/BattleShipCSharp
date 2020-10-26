@@ -396,6 +396,10 @@ namespace Proyecto_Naval
             }
         }
     
+
+
+
+        //Getter y setters para los jugadores
         public int obtenerTurnoJugador(){
             return this.contadorJugador;
         }
@@ -410,6 +414,6 @@ namespace Proyecto_Naval
             this.contadorOponente = this.contadorOponente - 1;
         }
 
-        
+
     }
 }
