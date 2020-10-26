@@ -111,7 +111,7 @@ namespace Proyecto_Naval
         public static void matrizInicial(){
             Program instancia = new Program();
             string[,] tablero = new string[10,9];
-            tablero[2, 5] = instancia.barco;
+            //tablero[2, 5] = instancia.barco;
             //Comienza la construccion de la tabla
             for (int f = 0; f < tablero.GetLength(0); f++){
                 Console.Write(f+1 + " | ");
