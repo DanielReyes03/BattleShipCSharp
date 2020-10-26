@@ -7,6 +7,7 @@ namespace Proyecto_Naval
         private int contadorJugador = 3;
         private int contadorOponente = 3;
         private string barco = "barco";
+        //Puntaje, Nombre
         private string[] jugador = {"0",""};
         private string[] oponente = {"0",""};
         private string[] barcoj1 = {"2","2","H","4"};
@@ -73,12 +74,15 @@ namespace Proyecto_Naval
         }
         public static void GenerarJuego(){
             Program instancia = new Program();
+            ConsoleKeyInfo cki;
             while (instancia.contadorJugador != 0 && instancia.contadorOponente != 0){
-                //Console.WriteLine(instancia.obtenerTurnoJugador());
-                //Console.WriteLine(instancia.obtenerTurnoOponente());
+                cki = Console.ReadKey();
+                if (cki.Key == ConsoleKey.S){
+                    Console.WriteLine("Se presiono la letra S");
+                    Environment.Exit(0);
+                }
                 instruccionesJugador();
                 instancia.quitarPuntoJugador();
-                Console.WriteLine("contador jugador "+ instancia.obtenerTurnoJugador());
                 instruccionesOponente();
                 instancia.quitarPuntoOponente();
                 Console.WriteLine("contador oponente "+  instancia.obtenerTurnoOponente());
@@ -86,7 +90,7 @@ namespace Proyecto_Naval
         } 
         public static void instruccionesJugador(){
                 Program instancia = new Program();
-                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
+                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1] + " Tienes " + instancia.obtenerTurnoJugador() + " turnos restantes");
                 Console.WriteLine("-------------------------------------- "+ instancia.jugador[1] + " ----------------------------------------------");
                 matrizJugador();
                 Console.WriteLine("-------------------------------------- "+ instancia.oponente[1] + " ----------------------------------------------");
@@ -96,7 +100,7 @@ namespace Proyecto_Naval
         }
         public static void instruccionesOponente(){
                 Program instancia = new Program();
-                Console.WriteLine("Es tu turno Oponente" + instancia.oponente[1]);
+                Console.WriteLine("Es tu turno Oponente" + instancia.oponente[1] + " Tienes " + instancia.obtenerTurnoOponente() + " turnos restantes");
                 Console.WriteLine("-------------------------------------- "+ instancia.oponente[1] + " ----------------------------------------------");
                 matrizOponente();
                 Console.WriteLine("-------------------------------------- "+ instancia.jugador[1] + " ----------------------------------------------");
