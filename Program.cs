@@ -4,10 +4,11 @@ namespace Proyecto_Naval
 {
     class Program
     {   
-        private Boolean valfinJuego;
+        private int contadorJugador = 3;
+        private int contadorOponente = 3;
         private string barco = "barco";
-        private string[] jugador = {"0","","3"};
-        private string[] oponente = {"0","","3"};
+        private string[] jugador = {"0",""};
+        private string[] oponente = {"0",""};
         private string[] barcoj1 = {"2","2","H","4"};
         private string[] barcoj2 = {"6","1","H","4"};
         private string[] barcoj3 = {"8","5","H","2"};
@@ -21,7 +22,7 @@ namespace Proyecto_Naval
 
         static void Main(string[] args)
         {
-            GenerarJuego();
+            Menu();
         }
         public static void Menu(){
             Console.WriteLine("Hola bienvenido a Battle Ship");
@@ -72,11 +73,37 @@ namespace Proyecto_Naval
         }
         public static void GenerarJuego(){
             Program instancia = new Program();
-            while (int.Parse(instancia.jugador[2]) != 0 && int.Parse(instancia.oponente[2]) != 0){
-                
+            while (instancia.contadorJugador != 0 && instancia.contadorOponente != 0){
+                //Console.WriteLine(instancia.obtenerTurnoJugador());
+                //Console.WriteLine(instancia.obtenerTurnoOponente());
+                instruccionesJugador();
+                instancia.quitarPuntoJugador();
+                Console.WriteLine("contador jugador "+ instancia.obtenerTurnoJugador());
+                instruccionesOponente();
+                instancia.quitarPuntoOponente();
+                Console.WriteLine("contador oponente "+  instancia.obtenerTurnoOponente());
             }
         } 
-
+        public static void instruccionesJugador(){
+                Program instancia = new Program();
+                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
+                Console.WriteLine("-------------------------------------- "+ instancia.jugador[1] + " ----------------------------------------------");
+                matrizJugador();
+                Console.WriteLine("-------------------------------------- "+ instancia.oponente[1] + " ----------------------------------------------");
+                matrizInicial();
+                Console.WriteLine("Que cordenada deseas ? ");
+                Console.ReadLine();
+        }
+        public static void instruccionesOponente(){
+                Program instancia = new Program();
+                Console.WriteLine("Es tu turno Oponente" + instancia.oponente[1]);
+                Console.WriteLine("-------------------------------------- "+ instancia.oponente[1] + " ----------------------------------------------");
+                matrizOponente();
+                Console.WriteLine("-------------------------------------- "+ instancia.jugador[1] + " ----------------------------------------------");
+                matrizInicial();
+                Console.WriteLine("Que cordenada deseas ? ");
+                Console.ReadLine();
+        }
         public static void matrizInicial(){
             Program instancia = new Program();
             string[,] tablero = new string[10,9];
@@ -369,29 +396,20 @@ namespace Proyecto_Naval
             }
         }
     
+        public int obtenerTurnoJugador(){
+            return this.contadorJugador;
+        }
+        public int obtenerTurnoOponente(){
+            return this.contadorOponente;
+        }
     
-    
-    
-    // //Por si sirve
-    //                 int bxo1 = int.Parse(instancia.barcoj1[0]);
-    //                 int byo1 = int.Parse(instancia.barcoj1[1]);
-    //                 //Barco 2
-    //                 int bxo2 = int.Parse(instancia.barcoj2[0]);
-    //                 int byo2 = int.Parse(instancia.barcoj2[1]);
-    //                 //Barco 3
-    //                 int bxo3 = int.Parse(instancia.barcoj3[0]);
-    //                 int byo3 = int.Parse(instancia.barcoj3[1]);
-    //                 //Barco 4
-    //                 int bxo4 = int.Parse(instancia.barcoj4[0]);
-    //                 int byo4 = int.Parse(instancia.barcoj4[1]);
-    //                 //Barco 5
-    //                 int bxo5 = int.Parse(instancia.barcoj5[0]);
-    //                 int byo5 = int.Parse(instancia.barcoj5[1]);
-    //                 matrizOponente[bxo1,byo1]=" B ";
-    //                 matrizOponente[bxo2,byo2]=" B ";
-    //                 matrizOponente[bxo3,byo3]=" B ";
-    //                 matrizOponente[bxo4,byo4]=" B ";
-    //                 matrizOponente[bxo5,byo5]=" B ";
+        public void quitarPuntoJugador(){
+            this.contadorJugador = this.contadorJugador - 1;
+        }
+        public void quitarPuntoOponente(){
+            this.contadorOponente = this.contadorOponente - 1;
+        }
 
+        
     }
 }
