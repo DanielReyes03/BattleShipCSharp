@@ -1,0 +1,12 @@
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/bin/Debug/netcoreapp3.1/test.deps.json
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/bin/Debug/netcoreapp3.1/test.runtimeconfig.json
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/bin/Debug/netcoreapp3.1/test.runtimeconfig.dev.json
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/bin/Debug/netcoreapp3.1/test.dll
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/bin/Debug/netcoreapp3.1/test.pdb
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.csprojAssemblyReference.cache
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.AssemblyInfoInputs.cache
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.AssemblyInfo.cs
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.csproj.CoreCompileInputs.cache
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.dll
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.pdb
+/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/test/obj/Debug/netcoreapp3.1/test.genruntimeconfig.cache
