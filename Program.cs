@@ -6,7 +6,6 @@ namespace Proyecto_Naval
     {   
         private int contadorJugador = 3;
         private int contadorOponente = 3;
-        private string barco = "barco";
         //Puntaje, Nombre
         private string[] jugador = {"0",""};
         private string[] oponente = {"0",""};
@@ -23,9 +22,10 @@ namespace Proyecto_Naval
 
         static void Main(string[] args)
         {
-            Menu();
+            matrizJugador();
         }
         public static void Menu(){
+            Program instancia = new Program();
             Console.WriteLine("Hola bienvenido a Battle Ship");
             Console.WriteLine("Que deseas hacer hoy ?");
             Console.WriteLine("1. Jugar");
@@ -44,7 +44,7 @@ namespace Proyecto_Naval
                     if(jugar == "si"){
                         ObtenerDatos();
                     }else{
-                        Console.Clear();
+                        instancia.LimpiarPantalla();
                         Menu();
                     }
                 break;
@@ -53,7 +53,7 @@ namespace Proyecto_Naval
                 break;
                 default:
                     Console.WriteLine("Esta opcion no es valida :(");
-                    Console.Clear();
+                    instancia.LimpiarPantalla();
                     Menu();
                 break;
             }
@@ -76,6 +76,7 @@ namespace Proyecto_Naval
             Program instancia = new Program();
             ConsoleKeyInfo cki;
             while (instancia.contadorJugador != 0 && instancia.contadorOponente != 0){
+                Console.WriteLine("Presiona enter para continuar");
                 cki = Console.ReadKey();
                 if (cki.Key == ConsoleKey.S){
                     Console.WriteLine("Se presiono la letra S");
@@ -83,24 +84,26 @@ namespace Proyecto_Naval
                 }
                 instruccionesJugador();
                 instancia.quitarPuntoJugador();
+                instancia.LimpiarPantalla();
                 instruccionesOponente();
                 instancia.quitarPuntoOponente();
                 Console.WriteLine("contador oponente "+  instancia.obtenerTurnoOponente());
+                instancia.LimpiarPantalla();
             }
+
         } 
         public static void instruccionesJugador(){
                 Program instancia = new Program();
-                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1] + " Tienes " + instancia.obtenerTurnoJugador() + " turnos restantes");
-                Console.WriteLine("-------------------------------------- "+ instancia.jugador[1] + " ----------------------------------------------");
+                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
+                Console.WriteLine("-------------------------------------- Jugador ----------------------------------------------");
                 matrizJugador();
-                Console.WriteLine("-------------------------------------- "+ instancia.oponente[1] + " ----------------------------------------------");
+                Console.WriteLine("-------------------------------------- Oponente ----------------------------------------------");
                 matrizInicial();
                 Console.WriteLine("Que cordenada deseas ? ");
                 Console.ReadLine();
         }
         public static void instruccionesOponente(){
                 Program instancia = new Program();
-                Console.WriteLine("Es tu turno Oponente" + instancia.oponente[1] + " Tienes " + instancia.obtenerTurnoOponente() + " turnos restantes");
                 Console.WriteLine("-------------------------------------- "+ instancia.oponente[1] + " ----------------------------------------------");
                 matrizOponente();
                 Console.WriteLine("-------------------------------------- "+ instancia.jugador[1] + " ----------------------------------------------");
@@ -154,7 +157,7 @@ namespace Proyecto_Naval
                         //Validacion barco 1
                             //Validacion de que no quepa
                     if(bx1 >= matrizJugador.GetLength(0) || by1 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
+                        Console.WriteLine("Parece que el barco no.1 no cabe en el tablero");
                     }else{ 
                         //Validacion de que no este repetido
                         if(bx1 == bx2 && bx1 == bx3 && bx1 == bx4 && bx1 == bx5 && by1 == by2 && by1 == by3 && by1 == by4 && by1 == by5){
@@ -400,9 +403,9 @@ namespace Proyecto_Naval
             }
         }
     
-
-
-
+        public void LimpiarPantalla(){
+            Console.Clear();
+        }
         //Getter y setters para los jugadores
         public int obtenerTurnoJugador(){
             return this.contadorJugador;
@@ -417,7 +420,6 @@ namespace Proyecto_Naval
         public void quitarPuntoOponente(){
             this.contadorOponente = this.contadorOponente - 1;
         }
-
 
     }
 }
