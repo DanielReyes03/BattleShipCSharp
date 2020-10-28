@@ -22,7 +22,7 @@ namespace Proyecto_Naval
 
         static void Main(string[] args)
         {
-            matrizJugador();
+            Menu();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -456,106 +456,272 @@ namespace Proyecto_Naval
                         //Validacion barco 1
                             //Validacion de que no quepa
                     if(bxo1 >= matrizOponente.GetLength(0) || byo1 >= matrizOponente.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero del oponente");
                     }else{ 
                         //Validacion de que no este repetido
                         if(bxo1 == bxo2 && bxo1 == bxo3 && bxo1 == bxo4 && bxo1 == bxo5 && byo1 == byo2 && byo1 == byo3 && byo1 == byo4 && byo1 == byo5){
-                            Console.WriteLine("Parece que el barco no.1 esta duplicado");
+                            Console.WriteLine("Parece que el barco no.1 esta duplicado del oponente");
 
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj1[3]) == 2){
-                               matrizOponente[bxo1,byo1]=" B ";
-                            }else if(int.Parse(instancia.barcoj1[3]) == 3){
-                               matrizOponente[bxo1,byo1]=" B ";
-                            }else if(int.Parse(instancia.barcoj1[3]) == 4){
-                                matrizOponente[bxo1,byo1]=" B ";
+                            if(int.Parse(instancia.barcoO1[3]) == 2){
+                                //Validacion de horizontal y posiciones
+                               if(instancia.barcoO1[2] == "H"){
+                                    matrizOponente[bxo1,byo1] = " B1 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    {
+                                        matrizOponente[bxo1,byo1+i] = " B1 ";
+                                    }
+                                }else if(instancia.barcoO1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    {
+                                        matrizOponente[bxo1+i,byo1] = " B1 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO1[3]) == 3){
+                               if(instancia.barcoO1[2] == "H"){
+                                    matrizOponente[bxo1,byo1] = " B1 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    {
+                                        matrizOponente[bxo1,byo1+i] = " B1 ";
+                                    }
+                                }else if(instancia.barcoO1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    {
+                                        matrizOponente[bxo1+i,byo1] = " B1 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO1[3]) == 4){
+                                if(instancia.barcoO1[2] == "H"){
+                                    matrizOponente[bxo1,byo1] = " B1 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    {
+                                        matrizOponente[bxo1,byo1+i] = " B1 ";
+                                    }
+                                }else if(instancia.barcoO1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    {
+                                        matrizOponente[bxo1+i,byo1] = " B1 ";
+                                    }
+                                }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 1");
+                                Console.WriteLine("Fuera de rango barco no. 1 del oponente del oponente");
                             }
                         }
                     }
                     //Validacion barco 2
                         //Validacion de que no quepa
                     if(bxo2 >= matrizOponente.GetLength(0) || byo2 >= matrizOponente.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero del oponente");
                     }else{
                         //Validacion de que no este repetido
                          if(bxo2 == bxo1 && bxo2 == bxo3 && bxo2 == bxo4 && bxo2 == bxo5 && byo2 == byo1 && byo2 == byo3 && byo2 == byo4 && byo2 == byo5){
-                            Console.WriteLine("Parece que el barco no.2 esta duplicado");
+                            Console.WriteLine("Parece que el barco no.2 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj2[3]) == 2){
-                                matrizOponente[bxo2,byo2]=" B ";
-                            }else if(int.Parse(instancia.barcoj2[3]) == 3){
-                                matrizOponente[bxo2,byo2]=" B ";
-                            }else if(int.Parse(instancia.barcoj2[3]) == 4){
-                                matrizOponente[bxo2,byo2]=" B ";
+                            if(int.Parse(instancia.barcoO2[3]) == 2){
+                                if(instancia.barcoO2[2] == "H"){
+                                    matrizOponente[bxo2,byo2]=" B2 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    {
+                                        matrizOponente[bxo2,byo2+i] = " B2 ";
+                                    }
+                                }else if(instancia.barcoO2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    {
+                                        matrizOponente[bxo2+i,byo2] = " B2 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO2[3]) == 3){
+                                 if(instancia.barcoO2[2] == "H"){
+                                    matrizOponente[bxo2,byo2]=" B2 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    {
+                                        matrizOponente[bxo2,byo2+i] = " B2 ";
+                                    }
+                                }else if(instancia.barcoO2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    {
+                                        matrizOponente[bxo2+i,byo2] = " B2 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO2[3]) == 4){
+                                 if(instancia.barcoO2[2] == "H"){
+                                    matrizOponente[bxo2,byo2]=" B2 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    {
+                                        matrizOponente[bxo2,byo2+i] = " B2 ";
+                                    }
+                                }else if(instancia.barcoO2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    {
+                                        matrizOponente[bxo2+i,byo2] = " B2 ";
+                                    }
+                                }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 2");
+                                Console.WriteLine("Fuera de rango barco no. 2 del oponente del oponente");
                             }
                         }
                     }
                     //Validacion barco 3
                         //Validacion de que no quepa
                     if(bxo3 >= matrizOponente.GetLength(0) || byo3 >= matrizOponente.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.3 no cabe en el tablero");
+                        Console.WriteLine("Parece que el barco no.3 no cabe en el tablero del oponente");
                     }else{
                             //Validacion de que no este repetido
                          if(bxo3 == bxo1 && bxo3 == bxo2 && bxo3 == bxo4 && bxo3 == bxo5 && byo3 == byo1 && byo3 == byo2 && byo3 == byo4 && byo3 == byo5){
-                            Console.WriteLine("Parece que el barco no.3 esta duplicado");
+                            Console.WriteLine("Parece que el barco no.3 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj3[3]) == 2){
-                                matrizOponente[bxo3,byo3]=" B ";
-                            }else if(int.Parse(instancia.barcoj3[3]) == 3){
-                                matrizOponente[bxo3,byo3]=" B ";                                                        
-                            }else if(int.Parse(instancia.barcoj3[3]) == 4){
-                                matrizOponente[bxo3,byo3]=" B ";
+                            if(int.Parse(instancia.barcoO3[3]) == 2){
+                                if(instancia.barcoO3[2] == "H"){
+                                    matrizOponente[bxo3,byo3]=" B3 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    {
+                                        matrizOponente[bxo3,byo3+i] = " B3 ";
+                                    }
+                                }else if(instancia.barcoO3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    {
+                                        matrizOponente[bxo3+i,byo3] = " B3 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO3[3]) == 3){
+                                if(instancia.barcoO3[2] == "H"){
+                                    matrizOponente[bxo3,byo3]=" B3 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    {
+                                        matrizOponente[bxo3,byo3+i] = " B3 ";
+                                    }
+                                }else if(instancia.barcoO3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    {
+                                        matrizOponente[bxo3+i,byo3] = " B3 ";
+                                    }
+                                }                                                       
+                            }else if(int.Parse(instancia.barcoO3[3]) == 4){
+                                if(instancia.barcoO3[2] == "H"){
+                                    matrizOponente[bxo3,byo3]=" B3 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    {
+                                        matrizOponente[bxo3,byo3+i] = " B3 ";
+                                    }
+                                }else if(instancia.barcoO3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    {
+                                        matrizOponente[bxo3+i,byo3] = " B3 ";
+                                    }
+                                }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 3");
+                                Console.WriteLine("Fuera de rango barco no. 3 del oponente");
                             }
                         }
                     }
                     //Validacion barco 4
                         //Validacion de que no quepa
                     if(bxo4 >= matrizOponente.GetLength(0) || byo4 >= matrizOponente.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.4 no cabe en el tablero");
+                        Console.WriteLine("Parece que el barco no.4 no cabe en el tablero del oponente");
                     }else{
                             //Validacion de que no este repetido
                          if(bxo4 == bxo1 && bxo4 == bxo2 && bxo4 == bxo3 && bxo4 == bxo5 && byo4 == byo1 && byo4 == byo2 && byo4 == byo3 && byo4 == byo5){
-                            Console.WriteLine("Parece que el barco no.4 esta duplicado");
+                            Console.WriteLine("Parece que el barco no.4 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj4[3]) == 2){
-                            matrizOponente[bxo4,byo4]=" B ";
-                            }else if(int.Parse(instancia.barcoj4[3]) == 3){
-                            matrizOponente[bxo4,byo4]=" B ";                                                      
-                            }else if(int.Parse(instancia.barcoj4[3]) == 4){
-                            matrizOponente[bxo4,byo4]=" B ";
+                            if(int.Parse(instancia.barcoO4[3]) == 2){
+                                if(instancia.barcoO4[2] == "H"){
+                                    matrizOponente[bxo4,byo4]="B4 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    {
+                                        matrizOponente[bxo4,byo4+i] = " B4 ";
+                                    }
+                                }else if(instancia.barcoO4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    {
+                                        matrizOponente[bxo4+i,byo4] = " B4 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO4[3]) == 3){
+                            if(instancia.barcoO4[2] == "H"){
+                                    matrizOponente[bxo4,byo4]="B4 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    {
+                                        matrizOponente[bxo4,byo4+i] = " B4 ";
+                                    }
+                                }else if(instancia.barcoO4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    {
+                                        matrizOponente[bxo4+i,byo4] = " B4 ";
+                                    }
+                                }                                                      
+                            }else if(int.Parse(instancia.barcoO4[3]) == 4){
+                            if(instancia.barcoO4[2] == "H"){
+                                    matrizOponente[bxo4,byo4]="B4 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    {
+                                        matrizOponente[bxo4,byo4+i] = " B4 ";
+                                    }
+                                }else if(instancia.barcoO4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    {
+                                        matrizOponente[bxo4+i,byo4] = " B4 ";
+                                    }
+                                }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 4");
+                                Console.WriteLine("Fuera de rango barco no. 4 del oponente");
                             }
                         }
                     }
                     //Validacion barco 5
                         //Validacion de que no quepa
                     if(bxo5 >= matrizOponente.GetLength(0) || byo5 >= matrizOponente.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.5 no cabe en el tablero");
+                        Console.WriteLine("Parece que el barco no.5 no cabe en el tablero del oponente");
                     }else{
                         //Validacion de que no este repetido
                         if(bxo5 == bxo1 && bxo5 == bxo2 && bxo5 == bxo3 && bxo5 == bxo4 && byo5 == byo1 && byo5 == byo2 && byo5 == byo3 && byo5 == byo4){
-                            Console.WriteLine("Parece que el barco no.5 esta duplicado");
+                            Console.WriteLine("Parece que el barco no.5 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj4[3]) == 2){
-                            matrizOponente[bxo5,byo5]=" B ";
-                            }else if(int.Parse(instancia.barcoj4[3]) == 3){
-                            matrizOponente[bxo5,byo5]=" B ";                                               
-                            }else if(int.Parse(instancia.barcoj4[3]) == 4){
-                            matrizOponente[bxo5,byo5]=" B ";
+                            if(int.Parse(instancia.barcoO5[3]) == 2){
+                                if(instancia.barcoO5[2] == "H"){
+                                    matrizOponente[bxo5,byo5]=" B5 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    {
+                                        matrizOponente[bxo5,byo5+i] = " B5 ";
+                                    }
+                                }else if(instancia.barcoO5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    {
+                                        matrizOponente[bxo5+i,byo5] = " B5 ";
+                                    }
+                                }
+                            }else if(int.Parse(instancia.barcoO5[3]) == 3){
+                            if(instancia.barcoO5[2] == "H"){
+                                    matrizOponente[bxo5,byo5]=" B5 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    {
+                                        matrizOponente[bxo5,byo5+i] = " B5 ";
+                                    }
+                                }else if(instancia.barcoO5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    {
+                                        matrizOponente[bxo5+i,byo5] = " B5 ";
+                                    }
+                                }                                            
+                            }else if(int.Parse(instancia.barcoO5[3]) == 4){
+                            if(instancia.barcoO5[2] == "H"){
+                                    matrizOponente[bxo5,byo5]=" B5 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    {
+                                        matrizOponente[bxo5,byo5+i] = " B5 ";
+                                    }
+                                }else if(instancia.barcoO5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    {
+                                        matrizOponente[bxo5+i,byo5] = " B5 ";
+                                    }
+                                }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 5");
+                                Console.WriteLine("Fuera de rango barco no. 5 del oponente");
                             }
                         }
                     }
