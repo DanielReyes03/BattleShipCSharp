@@ -22,7 +22,7 @@ namespace Proyecto_Naval
 
         static void Main(string[] args)
         {
-            Menu();
+            matrizJugador();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -169,7 +169,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                 if(instancia.barcoj1[2] == "H"){
                                     matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj1[3]); i++)
                                     {
                                         matrizJugador[bx1,by1+i] = " B1 ";
                                     }
@@ -182,7 +182,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj1[3]) == 3){
                               if(instancia.barcoj1[2] == "H"){
                                     matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj1[3]); i++)
                                     {
                                         matrizJugador[bx1,by1+i] = " B1 ";
                                     }
@@ -195,7 +195,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj1[3]) == 4){
                                if(instancia.barcoj1[2] == "H"){
                                     matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj1[3]); i++)
                                     {
                                         matrizJugador[bx1,by1+i] = " B1 ";
                                     }
@@ -224,7 +224,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                 if(instancia.barcoj2[2] == "H"){
                                     matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj2[3]); i++)
                                     {
                                         matrizJugador[bx2,by2+i] = " B2 ";
                                     }
@@ -238,7 +238,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                 if(instancia.barcoj2[2] == "H"){
                                     matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj2[3]); i++)
                                     {
                                         matrizJugador[bx2,by2+i] = " B2 ";
                                     }
@@ -252,7 +252,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                 if(instancia.barcoj2[2] == "H"){
                                     matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj2[3]); i++)
                                     {
                                         matrizJugador[bx2,by2+i] = " B2 ";
                                     }
@@ -281,7 +281,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                 if(instancia.barcoj3[2] == "H"){
                                     matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj3[3]); i++)
                                     {
                                         matrizJugador[bx3,by3+i] = " B3 ";
                                     }
@@ -295,7 +295,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                  if(instancia.barcoj3[2] == "H"){
                                     matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj3[3]); i++)
                                     {
                                         matrizJugador[bx3,by3+i] = " B3 ";
                                     }
@@ -309,7 +309,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                  if(instancia.barcoj3[2] == "H"){
                                     matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoj3[3]); i++)
                                     {
                                         matrizJugador[bx3,by3+i] = " B3 ";
                                     }
@@ -338,7 +338,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                 if(instancia.barcoj4[2] == "H"){
                                     matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                    for (int i = 1; i < int.Parse(instancia.barcoj4[3]); i++){
                                     matrizJugador[bx4,by4+i] = " B4 ";
                                     }
                                 }else if(instancia.barcoj4[2] == "V"){
@@ -350,7 +350,7 @@ namespace Proyecto_Naval
                               //Validacion de horizontal y posiciones  
                               if(instancia.barcoj4[2] == "H"){
                                     matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                    for (int i = 1; i < int.Parse(instancia.barcoj4[3]); i++){
                                     matrizJugador[bx4,by4+i] = " B4 ";
                                     }
                                 }else if(instancia.barcoj4[2] == "V"){
@@ -361,7 +361,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj4[3]) == 4){
                                 if(instancia.barcoj4[2] == "H"){
                                     matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                    for (int i = 1; i < int.Parse(instancia.barcoj4[3]); i++){
                                     matrizJugador[bx4,by4+i] = " B4 ";
                                     }
                                 }else if(instancia.barcoj4[2] == "V"){
@@ -387,7 +387,7 @@ namespace Proyecto_Naval
                             if(int.Parse(instancia.barcoj5[3]) == 2){
                                 if(instancia.barcoj5[2] == "H"){
                                     matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                    for (int i = 1; i < int.Parse(instancia.barcoj5[3]); i++){
                                     matrizJugador[bx5,by5+i] = " B5 ";
                                     }
                                 }else if(instancia.barcoj5[2] == "V"){
@@ -398,7 +398,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj5[3]) == 3){
                             if(instancia.barcoj5[2] == "H"){
                                     matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                    for (int i = 1; i < int.Parse(instancia.barcoj5[3]); i++){
                                     matrizJugador[bx5,by5+i] = " B5 ";
                                     }
                                 }else if(instancia.barcoj5[2] == "V"){
@@ -409,7 +409,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoj5[3]) == 4){
                             if(instancia.barcoj5[2] == "H"){
                                     matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                    for (int i = 1; i < int.Parse(instancia.barcoj5[3]); i++){
                                     matrizJugador[bx5,by5+i] = " B5 ";
                                     }
                                 }else if(instancia.barcoj5[2] == "V"){
@@ -468,7 +468,7 @@ namespace Proyecto_Naval
                                 //Validacion de horizontal y posiciones
                                if(instancia.barcoO1[2] == "H"){
                                     matrizOponente[bxo1,byo1] = " B1 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO1[3]); i++)
                                     {
                                         matrizOponente[bxo1,byo1+i] = " B1 ";
                                     }
@@ -481,7 +481,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO1[3]) == 3){
                                if(instancia.barcoO1[2] == "H"){
                                     matrizOponente[bxo1,byo1] = " B1 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO1[3]); i++)
                                     {
                                         matrizOponente[bxo1,byo1+i] = " B1 ";
                                     }
@@ -494,7 +494,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO1[3]) == 4){
                                 if(instancia.barcoO1[2] == "H"){
                                     matrizOponente[bxo1,byo1] = " B1 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO1[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO1[3]); i++)
                                     {
                                         matrizOponente[bxo1,byo1+i] = " B1 ";
                                     }
@@ -522,7 +522,7 @@ namespace Proyecto_Naval
                             if(int.Parse(instancia.barcoO2[3]) == 2){
                                 if(instancia.barcoO2[2] == "H"){
                                     matrizOponente[bxo2,byo2]=" B2 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO2[3]); i++)
                                     {
                                         matrizOponente[bxo2,byo2+i] = " B2 ";
                                     }
@@ -535,7 +535,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO2[3]) == 3){
                                  if(instancia.barcoO2[2] == "H"){
                                     matrizOponente[bxo2,byo2]=" B2 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO2[3]); i++)
                                     {
                                         matrizOponente[bxo2,byo2+i] = " B2 ";
                                     }
@@ -548,7 +548,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO2[3]) == 4){
                                  if(instancia.barcoO2[2] == "H"){
                                     matrizOponente[bxo2,byo2]=" B2 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO2[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO2[3]); i++)
                                     {
                                         matrizOponente[bxo2,byo2+i] = " B2 ";
                                     }
@@ -576,7 +576,7 @@ namespace Proyecto_Naval
                             if(int.Parse(instancia.barcoO3[3]) == 2){
                                 if(instancia.barcoO3[2] == "H"){
                                     matrizOponente[bxo3,byo3]=" B3 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO3[3]); i++)
                                     {
                                         matrizOponente[bxo3,byo3+i] = " B3 ";
                                     }
@@ -589,7 +589,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO3[3]) == 3){
                                 if(instancia.barcoO3[2] == "H"){
                                     matrizOponente[bxo3,byo3]=" B3 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO3[3]); i++)
                                     {
                                         matrizOponente[bxo3,byo3+i] = " B3 ";
                                     }
@@ -602,7 +602,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO3[3]) == 4){
                                 if(instancia.barcoO3[2] == "H"){
                                     matrizOponente[bxo3,byo3]=" B3 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO3[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO3[3]); i++)
                                     {
                                         matrizOponente[bxo3,byo3+i] = " B3 ";
                                     }
@@ -630,7 +630,7 @@ namespace Proyecto_Naval
                             if(int.Parse(instancia.barcoO4[3]) == 2){
                                 if(instancia.barcoO4[2] == "H"){
                                     matrizOponente[bxo4,byo4]="B4 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO4[3]); i++)
                                     {
                                         matrizOponente[bxo4,byo4+i] = " B4 ";
                                     }
@@ -643,7 +643,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO4[3]) == 3){
                             if(instancia.barcoO4[2] == "H"){
                                     matrizOponente[bxo4,byo4]="B4 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO4[3]); i++)
                                     {
                                         matrizOponente[bxo4,byo4+i] = " B4 ";
                                     }
@@ -656,7 +656,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO4[3]) == 4){
                             if(instancia.barcoO4[2] == "H"){
                                     matrizOponente[bxo4,byo4]="B4 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO4[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO4[3]); i++)
                                     {
                                         matrizOponente[bxo4,byo4+i] = " B4 ";
                                     }
@@ -684,7 +684,7 @@ namespace Proyecto_Naval
                             if(int.Parse(instancia.barcoO5[3]) == 2){
                                 if(instancia.barcoO5[2] == "H"){
                                     matrizOponente[bxo5,byo5]=" B5 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO5[3]); i++)
                                     {
                                         matrizOponente[bxo5,byo5+i] = " B5 ";
                                     }
@@ -697,7 +697,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO5[3]) == 3){
                             if(instancia.barcoO5[2] == "H"){
                                     matrizOponente[bxo5,byo5]=" B5 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO5[3]); i++)
                                     {
                                         matrizOponente[bxo5,byo5+i] = " B5 ";
                                     }
@@ -710,7 +710,7 @@ namespace Proyecto_Naval
                             }else if(int.Parse(instancia.barcoO5[3]) == 4){
                             if(instancia.barcoO5[2] == "H"){
                                     matrizOponente[bxo5,byo5]=" B5 ";
-                                    for (int i = 1; i <= int.Parse(instancia.barcoO5[3]); i++)
+                                    for (int i = 1; i < int.Parse(instancia.barcoO5[3]); i++)
                                     {
                                         matrizOponente[bxo5,byo5+i] = " B5 ";
                                     }
