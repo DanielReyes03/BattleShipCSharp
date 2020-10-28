@@ -166,11 +166,45 @@ namespace Proyecto_Naval
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj1[3]) == 2){
-                               matrizJugador[bx1,by1]=" B ";
+                                //Validacion de horizontal y posiciones
+                                if(instancia.barcoj1[2] == "H"){
+                                    matrizJugador[bx1,by1] = " B1 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    {
+                                        matrizJugador[bx1,by1+i] = " B1 ";
+                                    }
+                                }else if(instancia.barcoj1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    {
+                                        matrizJugador[bx1+i,by1] = " B1 ";
+                                    }
+                                }
                             }else if(int.Parse(instancia.barcoj1[3]) == 3){
-                               matrizJugador[bx1,by1]=" B ";
+                              if(instancia.barcoj1[2] == "H"){
+                                    matrizJugador[bx1,by1] = " B1 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    {
+                                        matrizJugador[bx1,by1+i] = " B1 ";
+                                    }
+                                }else if(instancia.barcoj1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    {
+                                        matrizJugador[bx1+i,by1] = " B1 ";
+                                    }
+                                }
                             }else if(int.Parse(instancia.barcoj1[3]) == 4){
-                                matrizJugador[bx1,by1]=" B ";
+                               if(instancia.barcoj1[2] == "H"){
+                                    matrizJugador[bx1,by1] = " B1 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    {
+                                        matrizJugador[bx1,by1+i] = " B1 ";
+                                    }
+                                }else if(instancia.barcoj1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    {
+                                        matrizJugador[bx1+i,by1] = " B1 ";
+                                    }
+                                }
                             }else{
                                 Console.WriteLine("Fuera de rango barco no. 1");
                             }
@@ -187,11 +221,47 @@ namespace Proyecto_Naval
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj2[3]) == 2){
-                                matrizJugador[bx2,by2]=" B ";
+                                //Validacion de horizontal y posiciones
+                                if(instancia.barcoj2[2] == "H"){
+                                    matrizJugador[bx2,by2]=" B2 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    {
+                                        matrizJugador[bx2,by2+i] = " B2 ";
+                                    }
+                                }else if(instancia.barcoj2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    {
+                                        matrizJugador[bx2+i,by2] = " B2 ";
+                                    }
+                                }
                             }else if(int.Parse(instancia.barcoj2[3]) == 3){
-                                matrizJugador[bx2,by2]=" B ";
+                                //Validacion de horizontal y posiciones
+                                if(instancia.barcoj2[2] == "H"){
+                                    matrizJugador[bx2,by2]=" B2 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    {
+                                        matrizJugador[bx2,by2+i] = " B2 ";
+                                    }
+                                }else if(instancia.barcoj2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    {
+                                        matrizJugador[bx2+i,by2] = " B2 ";
+                                    }
+                                }
                             }else if(int.Parse(instancia.barcoj2[3]) == 4){
-                                matrizJugador[bx2,by2]=" B ";
+                                //Validacion de horizontal y posiciones
+                                if(instancia.barcoj2[2] == "H"){
+                                    matrizJugador[bx2,by2]=" B2 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    {
+                                        matrizJugador[bx2,by2+i] = " B2 ";
+                                    }
+                                }else if(instancia.barcoj2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                    {
+                                        matrizJugador[bx2+i,by2] = " B2 ";
+                                    }
+                                }
                             }else{
                                 Console.WriteLine("Fuera de rango barco no. 2");
                             }
@@ -208,11 +278,47 @@ namespace Proyecto_Naval
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj3[3]) == 2){
-                                matrizJugador[bx3,by3]=" B ";
+                                //Validacion de horizontal y posiciones
+                                if(instancia.barcoj3[2] == "H"){
+                                    matrizJugador[bx3,by3]=" B3 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    {
+                                        matrizJugador[bx3,by3+i] = " B3 ";
+                                    }
+                                }else if(instancia.barcoj3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    {
+                                        matrizJugador[bx3+i,by3] = " B3 ";
+                                    }
+                                }
                             }else if(int.Parse(instancia.barcoj3[3]) == 3){
-                                matrizJugador[bx3,by3]=" B ";                                                        
+                                //Validacion de horizontal y posiciones
+                                 if(instancia.barcoj3[2] == "H"){
+                                    matrizJugador[bx3,by3]=" B3 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    {
+                                        matrizJugador[bx3,by3+i] = " B3 ";
+                                    }
+                                }else if(instancia.barcoj3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    {
+                                        matrizJugador[bx3+i,by3] = " B3 ";
+                                    }
+                                }                                                        
                             }else if(int.Parse(instancia.barcoj3[3]) == 4){
-                                matrizJugador[bx3,by3]=" B ";
+                                //Validacion de horizontal y posiciones
+                                 if(instancia.barcoj3[2] == "H"){
+                                    matrizJugador[bx3,by3]=" B3 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    {
+                                        matrizJugador[bx3,by3+i] = " B3 ";
+                                    }
+                                }else if(instancia.barcoj3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                    {
+                                        matrizJugador[bx3+i,by3] = " B3 ";
+                                    }
+                                }
                             }else{
                                 Console.WriteLine("Fuera de rango barco no. 3");
                             }
@@ -229,11 +335,40 @@ namespace Proyecto_Naval
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(instancia.barcoj4[3]) == 2){
-                            matrizJugador[bx4,by4]=" B ";
+                                //Validacion de horizontal y posiciones
+                                if(instancia.barcoj4[2] == "H"){
+                                    matrizJugador[bx4,by4]=" B4 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                    matrizJugador[bx4,by4+i] = " B4 ";
+                                    }
+                                }else if(instancia.barcoj4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                        matrizJugador[bx4+i,by4] = " B4 ";
+                                    }
+                                }  
                             }else if(int.Parse(instancia.barcoj4[3]) == 3){
-                            matrizJugador[bx4,by4]=" B ";                                                      
+                              //Validacion de horizontal y posiciones  
+                              if(instancia.barcoj4[2] == "H"){
+                                    matrizJugador[bx4,by4]=" B4 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                    matrizJugador[bx4,by4+i] = " B4 ";
+                                    }
+                                }else if(instancia.barcoj4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                        matrizJugador[bx4+i,by4] = " B4 ";
+                                    }
+                                }                                                     
                             }else if(int.Parse(instancia.barcoj4[3]) == 4){
-                            matrizJugador[bx4,by4]=" B ";
+                                if(instancia.barcoj4[2] == "H"){
+                                    matrizJugador[bx4,by4]=" B4 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                    matrizJugador[bx4,by4+i] = " B4 ";
+                                    }
+                                }else if(instancia.barcoj4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                        matrizJugador[bx4+i,by4] = " B4 ";
+                                    }
+                                }  
                             }else{
                                 Console.WriteLine("Fuera de rango barco no. 4");
                             }
@@ -249,12 +384,39 @@ namespace Proyecto_Naval
                             Console.WriteLine("Parece que el barco no.5 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj4[3]) == 2){
-                            matrizJugador[bx5,by5]=" B ";
-                            }else if(int.Parse(instancia.barcoj4[3]) == 3){
-                            matrizJugador[bx5,by5]=" B ";                                               
-                            }else if(int.Parse(instancia.barcoj4[3]) == 4){
-                            matrizJugador[bx5,by5]=" B ";
+                            if(int.Parse(instancia.barcoj5[3]) == 2){
+                                if(instancia.barcoj5[2] == "H"){
+                                    matrizJugador[bx5,by5]=" B5 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                    matrizJugador[bx5,by5+i] = " B5 ";
+                                    }
+                                }else if(instancia.barcoj5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                        matrizJugador[bx5+i,by5] = " B5 ";
+                                    }
+                                }  
+                            }else if(int.Parse(instancia.barcoj5[3]) == 3){
+                            if(instancia.barcoj5[2] == "H"){
+                                    matrizJugador[bx5,by5]=" B5 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                    matrizJugador[bx5,by5+i] = " B5 ";
+                                    }
+                                }else if(instancia.barcoj5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                        matrizJugador[bx5+i,by5] = " B5 ";
+                                    }
+                                }                                               
+                            }else if(int.Parse(instancia.barcoj5[3]) == 4){
+                            if(instancia.barcoj5[2] == "H"){
+                                    matrizJugador[bx5,by5]=" B5 ";
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                    matrizJugador[bx5,by5+i] = " B5 ";
+                                    }
+                                }else if(instancia.barcoj5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                        matrizJugador[bx5+i,by5] = " B5 ";
+                                    }
+                                }
                             }else{
                                 Console.WriteLine("Fuera de rango barco no. 5");
                             }
