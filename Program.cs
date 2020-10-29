@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 namespace Proyecto_Naval
 {
     class Program
@@ -13,7 +13,7 @@ namespace Proyecto_Naval
         private string[] barcoj2 = {"6","1","H","4"};
         private string[] barcoj3 = {"8","5","H","2"};
         private string[] barcoj4 = {"2","8","V","3"};
-        private string[] barcoj5 = {"6","9","V","4"};
+        private string[] barcoj5 = {"6","8","V","4"};
         private string[] barcoO1 = {"3","2","H","2"};
         private string[] barcoO2 = {"5","1","H","3"};
         private string[] barcoO3 = {"4","5","H","4"};
@@ -22,7 +22,7 @@ namespace Proyecto_Naval
 
         static void Main(string[] args)
         {
-            matrizJugador();
+            GenerarTXTJugador();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -96,7 +96,7 @@ namespace Proyecto_Naval
                 Program instancia = new Program();
                 Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
                 Console.WriteLine("-------------------------------------- Jugador ----------------------------------------------");
-                matrizJugador();
+                //matrizJugador();
                 Console.WriteLine("-------------------------------------- Oponente ----------------------------------------------");
                 matrizInicial();
                 Console.WriteLine("Que cordenada deseas ? ");
@@ -128,31 +128,31 @@ namespace Proyecto_Naval
             }
             //Termina construccion de tabla
         } 
-        public static void matrizJugador(){
+        public static void matrizJugador(string[] dimnesion, string[] barco1,string[] barco2,string[] barco3,string[] barco4,string[] barco5){
             Program instancia = new Program();
-            int filas = 10;
-            int columnas = 9;
-            string[,] matrizJugador =  new string[filas+1,columnas+1];   
+            int filas = int.Parse(dimnesion[0]);
+            int columnas = int.Parse(dimnesion[1]);
+            string[,] matrizJugador =  new string[filas,columnas];   
             for (int f = 1; f < matrizJugador.GetLength(0); f++){
                 Console.Write(f + " | ");
                 for (int c = 1; c < matrizJugador.GetLength(1); c++){
                     //Valor de la tabla inicial
                     matrizJugador[f,c] = " . ";
                     //Variables de barcos
-                    int bx1 = int.Parse(instancia.barcoj1[0]);
-                    int by1 = int.Parse(instancia.barcoj1[1]);
+                    int bx1 = int.Parse(barco1[0]);
+                    int by1 = int.Parse(barco1[1]);
                     //Barco 2
-                    int bx2 = int.Parse(instancia.barcoj2[0]);
-                    int by2 = int.Parse(instancia.barcoj2[1]);
+                    int bx2 = int.Parse(barco2[0]);
+                    int by2 = int.Parse(barco2[1]);
                     //Barco 3
-                    int bx3 = int.Parse(instancia.barcoj3[0]);
-                    int by3 = int.Parse(instancia.barcoj3[1]);
+                    int bx3 = int.Parse(barco3[0]);
+                    int by3 = int.Parse(barco3[1]);
                     //Barco 4
-                    int bx4 = int.Parse(instancia.barcoj4[0]);
-                    int by4 = int.Parse(instancia.barcoj4[1]);
+                    int bx4 = int.Parse(barco4[0]);
+                    int by4 = int.Parse(barco4[1]);
                     //Barco 5
-                    int bx5 = int.Parse(instancia.barcoj5[0]);
-                    int by5 = int.Parse(instancia.barcoj5[1]);
+                    int bx5 = int.Parse(barco5[0]);
+                    int by5 = int.Parse(barco5[1]);
                     //Validaciones para imprimir los barcos
                         //Validacion barco 1
                             //Validacion de que no quepa
@@ -162,45 +162,44 @@ namespace Proyecto_Naval
                         //Validacion de que no este repetido
                         if(bx1 == bx2 && bx1 == bx3 && bx1 == bx4 && bx1 == bx5 && by1 == by2 && by1 == by3 && by1 == by4 && by1 == by5){
                             Console.WriteLine("Parece que el barco no.1 esta duplicado");
-
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj1[3]) == 2){
+                            if(int.Parse(barco1[3]) == 2){
                                 //Validacion de horizontal y posiciones
-                                if(instancia.barcoj1[2] == "H"){
+                                if(barco1[2] == "H"){
                                     matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco1[3]); i++)
                                     {
                                         matrizJugador[bx1,by1+i] = " B1 ";
                                     }
                                 }else if(instancia.barcoj1[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i <= int.Parse(barco1[3]); i++)
                                     {
                                         matrizJugador[bx1+i,by1] = " B1 ";
                                     }
                                 }
-                            }else if(int.Parse(instancia.barcoj1[3]) == 3){
-                              if(instancia.barcoj1[2] == "H"){
+                            }else if(int.Parse(barco1[3]) == 3){
+                              if(barco1[2] == "H"){
                                     matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco1[3]); i++)
                                     {
                                         matrizJugador[bx1,by1+i] = " B1 ";
                                     }
-                                }else if(instancia.barcoj1[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                }else if(barco1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco1[3]); i++)
                                     {
                                         matrizJugador[bx1+i,by1] = " B1 ";
                                     }
                                 }
-                            }else if(int.Parse(instancia.barcoj1[3]) == 4){
-                               if(instancia.barcoj1[2] == "H"){
+                            }else if(int.Parse(barco1[3]) == 4){
+                               if(barco1[2] == "H"){
                                     matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj1[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco1[3]); i++)
                                     {
                                         matrizJugador[bx1,by1+i] = " B1 ";
                                     }
-                                }else if(instancia.barcoj1[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj1[3]); i++)
+                                }else if(barco1[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco1[3]); i++)
                                     {
                                         matrizJugador[bx1+i,by1] = " B1 ";
                                     }
@@ -220,44 +219,44 @@ namespace Proyecto_Naval
                             Console.WriteLine("Parece que el barco no.2 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj2[3]) == 2){
+                            if(int.Parse(barco2[3]) == 2){
                                 //Validacion de horizontal y posiciones
-                                if(instancia.barcoj2[2] == "H"){
+                                if(barco2[2] == "H"){
                                     matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj2[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco2[3]); i++)
                                     {
                                         matrizJugador[bx2,by2+i] = " B2 ";
                                     }
-                                }else if(instancia.barcoj2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                }else if(barco2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco2[3]); i++)
                                     {
                                         matrizJugador[bx2+i,by2] = " B2 ";
                                     }
                                 }
-                            }else if(int.Parse(instancia.barcoj2[3]) == 3){
+                            }else if(int.Parse(barco2[3]) == 3){
                                 //Validacion de horizontal y posiciones
-                                if(instancia.barcoj2[2] == "H"){
+                                if(barco2[2] == "H"){
                                     matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj2[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco2[3]); i++)
                                     {
                                         matrizJugador[bx2,by2+i] = " B2 ";
                                     }
-                                }else if(instancia.barcoj2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                }else if(barco2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco2[3]); i++)
                                     {
                                         matrizJugador[bx2+i,by2] = " B2 ";
                                     }
                                 }
-                            }else if(int.Parse(instancia.barcoj2[3]) == 4){
+                            }else if(int.Parse(barco2[3]) == 4){
                                 //Validacion de horizontal y posiciones
-                                if(instancia.barcoj2[2] == "H"){
+                                if(barco2[2] == "H"){
                                     matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj2[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco2[3]); i++)
                                     {
                                         matrizJugador[bx2,by2+i] = " B2 ";
                                     }
-                                }else if(instancia.barcoj2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj2[3]); i++)
+                                }else if(barco2[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco2[3]); i++)
                                     {
                                         matrizJugador[bx2+i,by2] = " B2 ";
                                     }
@@ -277,44 +276,44 @@ namespace Proyecto_Naval
                             Console.WriteLine("Parece que el barco no.3 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj3[3]) == 2){
+                            if(int.Parse(barco3[3]) == 2){
                                 //Validacion de horizontal y posiciones
-                                if(instancia.barcoj3[2] == "H"){
+                                if(barco3[2] == "H"){
                                     matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj3[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco3[3]); i++)
                                     {
                                         matrizJugador[bx3,by3+i] = " B3 ";
                                     }
-                                }else if(instancia.barcoj3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                }else if(barco3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco3[3]); i++)
                                     {
                                         matrizJugador[bx3+i,by3] = " B3 ";
                                     }
                                 }
-                            }else if(int.Parse(instancia.barcoj3[3]) == 3){
+                            }else if(int.Parse(barco3[3]) == 3){
                                 //Validacion de horizontal y posiciones
-                                 if(instancia.barcoj3[2] == "H"){
+                                 if(barco3[2] == "H"){
                                     matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj3[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco3[3]); i++)
                                     {
                                         matrizJugador[bx3,by3+i] = " B3 ";
                                     }
-                                }else if(instancia.barcoj3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                }else if(barco3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco3[3]); i++)
                                     {
                                         matrizJugador[bx3+i,by3] = " B3 ";
                                     }
                                 }                                                        
-                            }else if(int.Parse(instancia.barcoj3[3]) == 4){
+                            }else if(int.Parse(barco3[3]) == 4){
                                 //Validacion de horizontal y posiciones
-                                 if(instancia.barcoj3[2] == "H"){
+                                 if(barco3[2] == "H"){
                                     matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj3[3]); i++)
+                                    for (int i = 1; i < int.Parse(barco3[3]); i++)
                                     {
                                         matrizJugador[bx3,by3+i] = " B3 ";
                                     }
-                                }else if(instancia.barcoj3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj3[3]); i++)
+                                }else if(barco3[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco3[3]); i++)
                                     {
                                         matrizJugador[bx3+i,by3] = " B3 ";
                                     }
@@ -334,38 +333,38 @@ namespace Proyecto_Naval
                             Console.WriteLine("Parece que el barco no.4 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj4[3]) == 2){
+                            if(int.Parse(barco4[3]) == 2){
                                 //Validacion de horizontal y posiciones
-                                if(instancia.barcoj4[2] == "H"){
+                                if(barco4[2] == "H"){
                                     matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj4[3]); i++){
+                                    for (int i = 1; i < int.Parse(barco4[3]); i++){
                                     matrizJugador[bx4,by4+i] = " B4 ";
                                     }
-                                }else if(instancia.barcoj4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                }else if(barco4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco4[3]); i++){
                                         matrizJugador[bx4+i,by4] = " B4 ";
                                     }
                                 }  
-                            }else if(int.Parse(instancia.barcoj4[3]) == 3){
+                            }else if(int.Parse(barco4[3]) == 3){
                               //Validacion de horizontal y posiciones  
-                              if(instancia.barcoj4[2] == "H"){
+                              if(barco4[2] == "H"){
                                     matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj4[3]); i++){
+                                    for (int i = 1; i < int.Parse(barco4[3]); i++){
                                     matrizJugador[bx4,by4+i] = " B4 ";
                                     }
-                                }else if(instancia.barcoj4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                }else if(barco4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco4[3]); i++){
                                         matrizJugador[bx4+i,by4] = " B4 ";
                                     }
                                 }                                                     
-                            }else if(int.Parse(instancia.barcoj4[3]) == 4){
-                                if(instancia.barcoj4[2] == "H"){
+                            }else if(int.Parse(barco4[3]) == 4){
+                                if(barco4[2] == "H"){
                                     matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj4[3]); i++){
+                                    for (int i = 1; i < int.Parse(barco4[3]); i++){
                                     matrizJugador[bx4,by4+i] = " B4 ";
                                     }
-                                }else if(instancia.barcoj4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj4[3]); i++){
+                                }else if(barco4[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco4[3]); i++){
                                         matrizJugador[bx4+i,by4] = " B4 ";
                                     }
                                 }  
@@ -384,36 +383,36 @@ namespace Proyecto_Naval
                             Console.WriteLine("Parece que el barco no.5 esta duplicado");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(instancia.barcoj5[3]) == 2){
-                                if(instancia.barcoj5[2] == "H"){
+                            if(int.Parse(barco5[3]) == 2){
+                                if(barco5[2] == "H"){
                                     matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj5[3]); i++){
+                                    for (int i = 1; i < int.Parse(barco5[3]); i++){
                                     matrizJugador[bx5,by5+i] = " B5 ";
                                     }
-                                }else if(instancia.barcoj5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                }else if(barco5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco5[3]); i++){
                                         matrizJugador[bx5+i,by5] = " B5 ";
                                     }
                                 }  
-                            }else if(int.Parse(instancia.barcoj5[3]) == 3){
-                            if(instancia.barcoj5[2] == "H"){
+                            }else if(int.Parse(barco5[3]) == 3){
+                            if(barco5[2] == "H"){
                                     matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj5[3]); i++){
+                                    for (int i = 1; i < int.Parse(barco5[3]); i++){
                                     matrizJugador[bx5,by5+i] = " B5 ";
                                     }
-                                }else if(instancia.barcoj5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                }else if(barco5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco5[3]); i++){
                                         matrizJugador[bx5+i,by5] = " B5 ";
                                     }
                                 }                                               
-                            }else if(int.Parse(instancia.barcoj5[3]) == 4){
-                            if(instancia.barcoj5[2] == "H"){
+                            }else if(int.Parse(barco5[3]) == 4){
+                            if(barco5[2] == "H"){
                                     matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i < int.Parse(instancia.barcoj5[3]); i++){
+                                    for (int i = 1; i < int.Parse(barco5[3]); i++){
                                     matrizJugador[bx5,by5+i] = " B5 ";
                                     }
-                                }else if(instancia.barcoj5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(instancia.barcoj5[3]); i++){
+                                }else if(barco5[2] == "V"){
+                                    for (int i = 1; i <= int.Parse(barco5[3]); i++){
                                         matrizJugador[bx5+i,by5] = " B5 ";
                                     }
                                 }
@@ -749,5 +748,26 @@ namespace Proyecto_Naval
             this.contadorOponente = this.contadorOponente - 1;
         }
 
+        public static void GenerarTXTJugador(){
+            Program instancia = new Program();
+            string nombre = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/jugador.txt";            
+            StreamReader reader = new StreamReader(nombre);
+            string linea1 = reader.ReadLine(); 
+            string[] dimnesion; 
+            dimnesion = linea1.Split(",");
+            reader.ReadLine();
+            string barco1s = reader.ReadLine();
+            string barco2s = reader.ReadLine();
+            string barco3s = reader.ReadLine();
+            string barco4s = reader.ReadLine();
+            string barco5s = reader.ReadLine();
+            string[] barco1 = barco1s.Split(",");
+            string[] barco2 = barco2s.Split(",");
+            string[] barco3 = barco3s.Split(",");
+            string[] barco4 = barco4s.Split(",");
+            string[] barco5 = barco5s.Split(",");
+            Console.WriteLine(barco1[1]);
+            matrizJugador(dimnesion,barco1,barco2,barco3,barco4,barco5);
+        }
     }
 }
