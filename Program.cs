@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 namespace Proyecto_Naval
 {
     class Program
@@ -9,10 +10,10 @@ namespace Proyecto_Naval
         //Puntaje, Nombre
         private string[] jugador = {"0",""};
         private string[] oponente = {"0",""};
-
         static void Main(string[] args)
         {
-            Menu();
+           //Menu();
+           instruccionesOponente();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -92,22 +93,26 @@ namespace Proyecto_Naval
         } 
         public static void instruccionesJugador(){
                 Program instancia = new Program();
-                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
+                Console.WriteLine("Es tu turno Jugador " + instancia.oponente[1]);
                 Console.WriteLine("-------------------------------------- Jugador ----------------------------------------------");
                 GenerarTXTJugador();
                 Console.WriteLine("-------------------------------------- Oponente ----------------------------------------------");
                 matrizInicial();
+                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
                 Console.WriteLine("Que cordenada deseas ? ");
-                Console.ReadLine();
+                string[] CordenadaAtaque = Console.ReadLine().Split(",");
+                ModificarTXTJugador(CordenadaAtaque);
         }
         public static void instruccionesOponente(){
                 Program instancia = new Program();
+                Console.WriteLine("Es tu turno Oponente " + instancia.oponente[1]);
                 Console.WriteLine("-------------------------------------- Oponente ----------------------------------------------");
                 GenerarTXTOponente();
                 Console.WriteLine("-------------------------------------- Jugador ----------------------------------------------");
                 matrizInicial();
                 Console.WriteLine("Que cordenada deseas ? ");
-                Console.ReadLine();
+                string[] CordenadaAtaqueOponente = Console.ReadLine().Split(",");
+                ModificarTXTOponente(CordenadaAtaqueOponente);
         }
         public static void matrizInicial(){
             Program instancia = new Program();
@@ -464,7 +469,7 @@ namespace Proyecto_Naval
                             if(int.Parse(barcoO1[3]) == 2){
                                 //Validacion de horizontal y posiciones
                                if(barcoO1[2] == "H"){
-                                    matrizOponente[bxo1,byo1] = " B1 ";
+                                   matrizOponente[bxo1,byo1] = " B1 ";
                                     for (int i = 1; i < int.Parse(barcoO1[3]); i++)
                                     {
                                         matrizOponente[bxo1,byo1+i] = " B1 ";
@@ -474,6 +479,17 @@ namespace Proyecto_Naval
                                     {
                                         matrizOponente[bxo1+i,byo1] = " B1 ";
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     string db = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/AtaquesJugador.txt";
+                                     string co1 = barcoO1[0];
+                                     string co2 = barcoO1[1];
+                                     string data = co1+","+co2;
+                                      //Console.WriteLine(data);
+                                      if(File.ReadAllText(db).Contains(data)){
+                                          matrizOponente[bxo1+1,byo1] = " X ";
+                                      }
+                                    // if(matrizOponente[bxo1,byo1] == matrizOponente[2,2]){
+                                    // }else{}
                                 }
                             }else if(int.Parse(barcoO1[3]) == 3){
                                if(barcoO1[2] == "H"){
@@ -731,14 +747,6 @@ namespace Proyecto_Naval
         public void LimpiarPantalla(){
             Console.Clear();
         }
-        //Getter y setters para los jugadores
-        public int obtenerTurnoJugador(){
-            return this.contadorJugador;
-        }
-        public int obtenerTurnoOponente(){
-            return this.contadorOponente;
-        }
-    
         public void quitarPuntoJugador(){
             this.contadorJugador = this.contadorJugador - 1;
         }
@@ -763,6 +771,7 @@ namespace Proyecto_Naval
             string[] barco3 = barco3s.Split(",");
             string[] barco4 = barco4s.Split(",");
             string[] barco5 = barco5s.Split(",");
+            reader.ReadLine();
             matrizJugador(dimnesion,barco1,barco2,barco3,barco4,barco5);
         }
         public static void GenerarTXTOponente(){
@@ -782,7 +791,51 @@ namespace Proyecto_Naval
             string[] barco3 = barco3s.Split(",");
             string[] barco4 = barco4s.Split(",");
             string[] barco5 = barco5s.Split(",");
+            reader.ReadLine();
+            Thread.Sleep(5000);
             matrizOponente(dimnesion,barco1,barco2,barco3,barco4,barco5);
         }
+
+        public static void ModificarTXTOponente(string[] ataque){
+            try{
+            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/AtaquesOponente.txt";
+            string path = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/oponente.txt";       
+                 using(StreamWriter writer = new StreamWriter(Npath,true)){
+                     string a = string.Join(",",ataque);
+                     writer.WriteLine(a);
+                 }     
+                // using (StreamWriter writer = new StreamWriter(path,true)){
+                // writer.WriteLine();
+                // writer.WriteLine("-----------Ataques realizados hacia el Jugador-----------");
+                // string a = string.Join(",",ataque);
+                // writer.WriteLine(a);
+                // }
+            }
+            catch (Exception exp){
+                Console.Write(exp);
+                throw;
+            }
+        }
+        public static void ModificarTXTJugador(string[] ataqueOponente){
+            try{
+            string path = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/jugador.txt"; 
+            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto Naval/AtaquesJugador.txt";           
+                 using(StreamWriter writer = new StreamWriter(Npath,true)){
+                     string a = string.Join(",",ataqueOponente);
+                     writer.WriteLine(a);
+                 }    
+                // using (StreamWriter writer = new StreamWriter(path,true)){
+                // writer.WriteLine();
+                // writer.WriteLine("-----------Ataques realizados-----------");
+                // string a = string.Join(",",ataqueOponente);
+                // writer.WriteLine(a);
+                // }    
+            }
+            catch (Exception exp){
+                Console.Write(exp);
+                throw;
+            }
+        }
+        
     }
 }
