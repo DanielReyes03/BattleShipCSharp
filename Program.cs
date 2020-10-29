@@ -731,14 +731,6 @@ namespace Proyecto_Naval
         public void LimpiarPantalla(){
             Console.Clear();
         }
-        //Getter y setters para los jugadores
-        public int obtenerTurnoJugador(){
-            return this.contadorJugador;
-        }
-        public int obtenerTurnoOponente(){
-            return this.contadorOponente;
-        }
-    
         public void quitarPuntoJugador(){
             this.contadorJugador = this.contadorJugador - 1;
         }
