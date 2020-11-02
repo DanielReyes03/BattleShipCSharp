@@ -2,3 +2,5 @@
 .DS_Store
 obj/*
 Proyecto Naval.csproj
+AtaquesJugador.txt
+AtaquesOponente.txt
