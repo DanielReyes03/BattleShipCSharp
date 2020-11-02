@@ -12,8 +12,8 @@ namespace Proyecto_Naval
         private string[] oponente = {"0",""};
         static void Main(string[] args)
         {
-           //Menu();
-           instruccionesOponente();
+           Menu();
+           //instruccionesOponente();
         }
         public static void Menu(){
             Program instancia = new Program();
