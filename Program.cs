@@ -133,10 +133,28 @@ namespace Proyecto_Naval
             }
             //Termina construccion de tabla
         } 
-        public static void matrizJugador(string[] dimnesion, string[] barco1,string[] barco2,string[] barco3,string[] barco4,string[] barco5){
+  
+
+      public static void matrizJugador(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
             Program instancia = new Program();
-            int filas = int.Parse(dimnesion[0]);
-            int columnas = int.Parse(dimnesion[1]);
+            string db = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesOponente.txt";
+            string coxJ1 = barcoO1[0];
+            string coyJ2 = barcoO1[1];
+            string cobxJ2 = barcoO2[0];
+            string cobyJ2 =  barcoO2[1];
+            string cobxJ3 = barcoO3[0];
+            string cobyJ3 = barcoO3[1];
+            string cobxJ4 = barcoO4[0];
+            string cobyJ4 = barcoO4[1];
+            string cobxJ5 = barcoO5[0];
+            string cobyJ5 = barcoO5[1];
+            string cordenadasBarcoJ1 = coxJ1+","+coyJ2;
+            string cordenadasBarcoJ2 = cobxJ2+","+cobyJ2;
+            string cordenadasBarcoJ3 = cobxJ3+","+cobyJ3;
+            string cordenadasBarcoJ4 = cobxJ4+","+cobyJ4;
+            string cordenadasBarcoJ5 = cobxJ5+","+cobyJ5;
+            int filas = int.Parse(dimnesionOponente[0]);
+            int columnas = int.Parse(dimnesionOponente[1]);
             string[,] matrizJugador =  new string[filas,columnas];   
             for (int f = 1; f < matrizJugador.GetLength(0); f++){
                 Console.Write(f + " | ");
@@ -144,285 +162,649 @@ namespace Proyecto_Naval
                     //Valor de la tabla inicial
                     matrizJugador[f,c] = " . ";
                     //Variables de barcos
-                    int bx1 = int.Parse(barco1[0]);
-                    int by1 = int.Parse(barco1[1]);
+                    int bxo1 = int.Parse(barcoO1[0]);
+                    int byo1 = int.Parse(barcoO1[1]);
                     //Barco 2
-                    int bx2 = int.Parse(barco2[0]);
-                    int by2 = int.Parse(barco2[1]);
+                    int bxo2 = int.Parse(barcoO2[0]);
+                    int byo2 = int.Parse(barcoO2[1]);
                     //Barco 3
-                    int bx3 = int.Parse(barco3[0]);
-                    int by3 = int.Parse(barco3[1]);
+                    int bxo3 = int.Parse(barcoO3[0]);
+                    int byo3 = int.Parse(barcoO3[1]);
                     //Barco 4
-                    int bx4 = int.Parse(barco4[0]);
-                    int by4 = int.Parse(barco4[1]);
+                    int bxo4 = int.Parse(barcoO4[0]);
+                    int byo4 = int.Parse(barcoO4[1]);
                     //Barco 5
-                    int bx5 = int.Parse(barco5[0]);
-                    int by5 = int.Parse(barco5[1]);
+                    int bxo5 = int.Parse(barcoO5[0]);
+                    int byo5 = int.Parse(barcoO5[1]);
                     //Validaciones para imprimir los barcos
                         //Validacion barco 1
                             //Validacion de que no quepa
-                    if(bx1 >= matrizJugador.GetLength(0) || by1 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.1 no cabe en el tablero");
+                    if(bxo1 >= matrizJugador.GetLength(0) || byo1 >= matrizJugador.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero del oponente");
                     }else{ 
                         //Validacion de que no este repetido
-                        if(bx1 == bx2 && bx1 == bx3 && bx1 == bx4 && bx1 == bx5 && by1 == by2 && by1 == by3 && by1 == by4 && by1 == by5){
-                            Console.WriteLine("Parece que el barco no.1 esta duplicado");
+                        if(bxo1 == bxo2 && bxo1 == bxo3 && bxo1 == bxo4 && bxo1 == bxo5 && byo1 == byo2 && byo1 == byo3 && byo1 == byo4 && byo1 == byo5){
+                            Console.WriteLine("Parece que el barco no.1 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(barco1[3]) == 2){
+                            if(int.Parse(barcoO1[3]) == 2){
                                 //Validacion de horizontal y posiciones
-                                if(barco1[2] == "H"){
-                                    matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i < int.Parse(barco1[3]); i++)
+                               if(barcoO1[2] == "H"){
+                                   matrizJugador[bxo1,byo1] = " B1 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO1[3]); i++)
                                     {
-                                        matrizJugador[bx1,by1+i] = " B1 ";
+                                        int a = bxo1;
+                                        int b = byo1+i;
+                                        string z = a+","+b;
+                                        if(File.ReadAllText(db).Contains(z)){
+                                            matrizJugador[bxo1,byo1+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo1,byo1+i] = " B1 ";
+                                        }
                                     }
-                                }else if(barco1[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco1[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ1)){
+                                         matrizJugador[bxo1+1,byo1] = " X ";
+                                     }
+                                }else if(barcoO1[2] == "V"){
+                                    //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO1[3]); i++)
                                     {
-                                        matrizJugador[bx1+i,by1] = " B1 ";
+                                        int a = bxo1+i;
+                                        int b = byo1;
+                                        string z = a+","+b;
+                                        if(File.ReadAllText(db).Contains(z)){
+                                            matrizJugador[bxo1+i,byo1] = " X ";
+                                        }else{
+                                            matrizJugador[bxo1+i,byo1] = " B1 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ1)){
+                                        matrizJugador[bxo1,byo1] = " X ";
                                     }
                                 }
-                            }else if(int.Parse(barco1[3]) == 3){
-                              if(barco1[2] == "H"){
-                                    matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i < int.Parse(barco1[3]); i++)
+                            }else if(int.Parse(barcoO1[3]) == 3){
+                               if(barcoO1[2] == "H"){
+                                   matrizJugador[bxo1,byo1] = " B1 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO1[3]); i++)
                                     {
-                                        matrizJugador[bx1,by1+i] = " B1 ";
+                                        int a = bxo1;
+                                        int b = byo1+i;
+                                        string z = a+","+b;
+                                        if(File.ReadAllText(db).Contains(z)){
+                                            matrizJugador[bxo1,byo1+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo1,byo1+i] = " B1 ";
+                                        }
                                     }
-                                }else if(barco1[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco1[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ1)){
+                                         matrizJugador[bxo1+1,byo1] = " X ";
+                                     }
+                                }else if(barcoO1[2] == "V"){
+                                    //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO1[3]); i++)
                                     {
-                                        matrizJugador[bx1+i,by1] = " B1 ";
+                                        int a = bxo1+i;
+                                        int b = byo1;
+                                        string z = a+","+b;
+                                        if(File.ReadAllText(db).Contains(z)){
+                                            matrizJugador[bxo1+i,byo1] = " X ";
+                                        }else{
+                                            matrizJugador[bxo1+i,byo1] = " B1 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ1)){
+                                        matrizJugador[bxo1,byo1] = " X ";
                                     }
                                 }
-                            }else if(int.Parse(barco1[3]) == 4){
-                               if(barco1[2] == "H"){
-                                    matrizJugador[bx1,by1] = " B1 ";
-                                    for (int i = 1; i < int.Parse(barco1[3]); i++)
+                            }else if(int.Parse(barcoO1[3]) == 4){
+                                if(barcoO1[2] == "H"){
+                                   matrizJugador[bxo1,byo1] = " B1 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO1[3]); i++)
                                     {
-                                        matrizJugador[bx1,by1+i] = " B1 ";
+                                        int a = bxo1;
+                                        int b = byo1+i;
+                                        string z = a+","+b;
+                                        if(File.ReadAllText(db).Contains(z)){
+                                            matrizJugador[bxo1,byo1+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo1,byo1+i] = " B1 ";
+                                        }
                                     }
-                                }else if(barco1[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco1[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ1)){
+                                         matrizJugador[bxo1,byo1] = " X ";
+                                     }
+                                }else if(barcoO1[2] == "V"){
+                                    //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO1[3]); i++)
                                     {
-                                        matrizJugador[bx1+i,by1] = " B1 ";
+                                        int a = bxo1+i;
+                                        int b = byo1;
+                                        string z = a+","+b;
+                                        if(File.ReadAllText(db).Contains(z)){
+                                            matrizJugador[bxo1+i,byo1] = " X ";
+                                        }else{
+                                            matrizJugador[bxo1+i,byo1] = " B1 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ1)){
+                                        matrizJugador[bxo1,byo1] = " X ";
                                     }
                                 }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 1");
+                                Console.WriteLine("Fuera de rango barco no. 1 del oponente del oponente");
                             }
                         }
                     }
                     //Validacion barco 2
                         //Validacion de que no quepa
-                    if(bx2 >= matrizJugador.GetLength(0) || by2 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero");
+                    if(bxo2 >= matrizJugador.GetLength(0) || byo2 >= matrizJugador.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.2 no cabe en el tablero del oponente");
                     }else{
                         //Validacion de que no este repetido
-                         if(bx2 == bx1 && bx2 == bx3 && bx2 == bx4 && bx2 == bx5 && by2 == by1 && by2 == by3 && by2 == by4 && by2 == by5){
-                            Console.WriteLine("Parece que el barco no.2 esta duplicado");
+                         if(bxo2 == bxo1 && bxo2 == bxo3 && bxo2 == bxo4 && bxo2 == bxo5 && byo2 == byo1 && byo2 == byo3 && byo2 == byo4 && byo2 == byo5){
+                            Console.WriteLine("Parece que el barco no.2 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(barco2[3]) == 2){
-                                //Validacion de horizontal y posiciones
-                                if(barco2[2] == "H"){
-                                    matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i < int.Parse(barco2[3]); i++)
+                            if(int.Parse(barcoO2[3]) == 2){
+                                if(barcoO2[2] == "H"){
+                                    matrizJugador[bxo2,byo2] = " B2 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx2,by2+i] = " B2 ";
+                                        int a2 = bxo2;
+                                        int b2 = byo2+i;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizJugador[bxo2,byo2+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo2,byo2+i] = " B2 ";
+                                        }
                                     }
-                                }else if(barco2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco2[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ2)){
+                                         matrizJugador[bxo2+1,byo2] = " X ";
+                                     }
+                                }else if(barcoO2[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx2+i,by2] = " B2 ";
+                                        int a2 = bxo2+i;
+                                        int b2 = byo2;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizJugador[bxo2+i,byo2] = " X ";
+                                        }else{
+                                            matrizJugador[bxo2+i,byo2] = " B2 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ2)){
+                                        matrizJugador[bxo1,byo1] = " X ";
                                     }
                                 }
-                            }else if(int.Parse(barco2[3]) == 3){
-                                //Validacion de horizontal y posiciones
-                                if(barco2[2] == "H"){
-                                    matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i < int.Parse(barco2[3]); i++)
+                            }else if(int.Parse(barcoO2[3]) == 3){
+                                 if(barcoO2[2] == "H"){
+                                    matrizJugador[bxo2,byo2] = " B2 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx2,by2+i] = " B2 ";
+                                        int a2 = bxo2;
+                                        int b2 = byo2+i;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizJugador[bxo2,byo2+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo2,byo2+i] = " B2 ";
+                                        }
                                     }
-                                }else if(barco2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco2[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ2)){
+                                         matrizJugador[bxo2,byo2] = " X ";
+                                     }
+                                }else if(barcoO2[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx2+i,by2] = " B2 ";
+                                        int a2 = bxo2+i;
+                                        int b2 = byo2;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizJugador[bxo2+i,byo2] = " X ";
+                                        }else{
+                                            matrizJugador[bxo2+i,byo2] = " B2 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ2)){
+                                        matrizJugador[bxo2,byo2] = " X ";
                                     }
                                 }
-                            }else if(int.Parse(barco2[3]) == 4){
-                                //Validacion de horizontal y posiciones
-                                if(barco2[2] == "H"){
-                                    matrizJugador[bx2,by2]=" B2 ";
-                                    for (int i = 1; i < int.Parse(barco2[3]); i++)
+                            }else if(int.Parse(barcoO2[3]) == 4){
+                                 if(barcoO2[2] == "H"){
+                                    matrizJugador[bxo2,byo2] = " B2 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx2,by2+i] = " B2 ";
+                                        int a2 = bxo2;
+                                        int b2 = byo2+i;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizJugador[bxo2,byo2+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo2,byo2+i] = " B2 ";
+                                        }
                                     }
-                                }else if(barco2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco2[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ2)){
+                                         matrizJugador[bxo2,byo2] = " X ";
+                                     }
+                                }else if(barcoO2[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx2+i,by2] = " B2 ";
+                                        int a2 = bxo2+i;
+                                        int b2 = byo2;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizJugador[bxo2+i,byo2] = " X ";
+                                        }else{
+                                            matrizJugador[bxo2+i,byo2] = " B2 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ2)){
+                                        matrizJugador[bxo2,byo2] = " X ";
                                     }
                                 }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 2");
+                                Console.WriteLine("Fuera de rango barco no. 2 del oponente del oponente");
                             }
                         }
                     }
                     //Validacion barco 3
                         //Validacion de que no quepa
-                    if(bx3 >= matrizJugador.GetLength(0) || by3 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.3 no cabe en el tablero");
+                    if(bxo3 >= matrizJugador.GetLength(0) || byo3 >= matrizJugador.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.3 no cabe en el tablero del oponente");
                     }else{
                             //Validacion de que no este repetido
-                         if(bx3 == bx1 && bx3 == bx2 && bx3 == bx4 && bx3 == bx5 && by3 == by1 && by3 == by2 && by3 == by4 && by3 == by5){
-                            Console.WriteLine("Parece que el barco no.3 esta duplicado");
+                         if(bxo3 == bxo1 && bxo3 == bxo2 && bxo3 == bxo4 && bxo3 == bxo5 && byo3 == byo1 && byo3 == byo2 && byo3 == byo4 && byo3 == byo5){
+                            Console.WriteLine("Parece que el barco no.3 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(barco3[3]) == 2){
-                                //Validacion de horizontal y posiciones
-                                if(barco3[2] == "H"){
-                                    matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i < int.Parse(barco3[3]); i++)
+                            if(int.Parse(barcoO3[3]) == 2){
+                                if(barcoO3[2] == "H"){
+                                    matrizJugador[bxo3,byo3] = " B3 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO3[3]); i++)
                                     {
-                                        matrizJugador[bx3,by3+i] = " B3 ";
+                                        int a3 = bxo3;
+                                        int b3 = byo3+i;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizJugador[bxo3,byo3+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo3,byo3+i] = " B3 ";
+                                        }
                                     }
-                                }else if(barco3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco3[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ3)){
+                                         matrizJugador[bxo3,byo3] = " X ";
+                                     }
+                                }else if(barcoO3[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx3+i,by3] = " B3 ";
+                                        int a3 = bxo3+i;
+                                        int b3 = byo3;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizJugador[bxo3+i,byo3] = " X ";
+                                        }else{
+                                            matrizJugador[bxo3+i,byo3] = " B3 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ3)){
+                                        matrizJugador[bxo3,byo3] = " X ";
                                     }
                                 }
-                            }else if(int.Parse(barco3[3]) == 3){
-                                //Validacion de horizontal y posiciones
-                                 if(barco3[2] == "H"){
-                                    matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i < int.Parse(barco3[3]); i++)
+                            }else if(int.Parse(barcoO3[3]) == 3){
+                                if(barcoO3[2] == "H"){
+                                    matrizJugador[bxo3,byo3] = " B3 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO3[3]); i++)
                                     {
-                                        matrizJugador[bx3,by3+i] = " B3 ";
+                                        int a3 = bxo3;
+                                        int b3 = byo3+i;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizJugador[bxo3,byo3+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo3,byo3+i] = " B3 ";
+                                        }
                                     }
-                                }else if(barco3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco3[3]); i++)
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ3)){
+                                         matrizJugador[bxo3,byo3] = " X ";
+                                     }
+                                }else if(barcoO3[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizJugador[bx3+i,by3] = " B3 ";
+                                        int a3 = bxo3+i;
+                                        int b3 = byo3;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizJugador[bxo3+i,byo3] = " X ";
+                                        }else{
+                                            matrizJugador[bxo3+i,byo3] = " B3 ";
+                                        }
                                     }
-                                }                                                        
-                            }else if(int.Parse(barco3[3]) == 4){
-                                //Validacion de horizontal y posiciones
-                                 if(barco3[2] == "H"){
-                                    matrizJugador[bx3,by3]=" B3 ";
-                                    for (int i = 1; i < int.Parse(barco3[3]); i++)
-                                    {
-                                        matrizJugador[bx3,by3+i] = " B3 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ3)){
+                                        matrizJugador[bxo3,byo3] = " X ";
                                     }
-                                }else if(barco3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco3[3]); i++)
+                                }                                                       
+                            }else if(int.Parse(barcoO3[3]) == 4){
+                                if(barcoO3[2] == "H"){
+                                    matrizJugador[bxo3,byo3] = " B3 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO3[3]); i++)
                                     {
-                                        matrizJugador[bx3+i,by3] = " B3 ";
+                                        int a3 = bxo3;
+                                        int b3 = byo3+i;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizJugador[bxo3,byo3+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo3,byo3+i] = " B3 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ3)){
+                                         matrizJugador[bxo3,byo3] = " X ";
+                                     }
+                                }else if(barcoO3[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
+                                    {
+                                        int a3 = bxo3+i;
+                                        int b3 = byo3;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizJugador[bxo3+i,byo3] = " X ";
+                                        }else{
+                                            matrizJugador[bxo3+i,byo3] = " B3 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ3)){
+                                        matrizJugador[bxo3,byo3] = " X ";
                                     }
                                 }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 3");
+                                Console.WriteLine("Fuera de rango barco no. 3 del oponente");
                             }
                         }
                     }
                     //Validacion barco 4
                         //Validacion de que no quepa
-                    if(bx4 >= matrizJugador.GetLength(0) || by4 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.4 no cabe en el tablero");
+                    if(bxo4 >= matrizJugador.GetLength(0) || byo4 >= matrizJugador.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.4 no cabe en el tablero del oponente");
                     }else{
                             //Validacion de que no este repetido
-                         if(bx4 == bx1 && bx4 == bx2 && bx4 == bx3 && bx4 == bx5 && by4 == by1 && by4 == by2 && by4 == by3 && by4 == by5){
-                            Console.WriteLine("Parece que el barco no.4 esta duplicado");
+                         if(bxo4 == bxo1 && bxo4 == bxo2 && bxo4 == bxo3 && bxo4 == bxo5 && byo4 == byo1 && byo4 == byo2 && byo4 == byo3 && byo4 == byo5){
+                            Console.WriteLine("Parece que el barco no.4 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(barco4[3]) == 2){
-                                //Validacion de horizontal y posiciones
-                                if(barco4[2] == "H"){
-                                    matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i < int.Parse(barco4[3]); i++){
-                                    matrizJugador[bx4,by4+i] = " B4 ";
+                            if(int.Parse(barcoO4[3]) == 2){
+                                if(barcoO4[2] == "H"){
+                                    matrizJugador[bxo4,byo4] = " B4 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO4[3]); i++)
+                                    {
+                                        int a4 = bxo4;
+                                        int b4 = byo4+i;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizJugador[bxo4,byo4+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo4,byo4+i] = " B4 ";
+                                        }
                                     }
-                                }else if(barco4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco4[3]); i++){
-                                        matrizJugador[bx4+i,by4] = " B4 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ4)){
+                                         matrizJugador[bxo4,byo4] = " X ";
+                                     }
+                                }else if(barcoO4[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO4[3]); i++)
+                                    {
+                                        int a4 = bxo4+i;
+                                        int b4 = byo4;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizJugador[bxo4+i,byo4] = " X ";
+                                        }else{
+                                            matrizJugador[bxo4+i,byo4] = " B4 ";
+                                        }
                                     }
-                                }  
-                            }else if(int.Parse(barco4[3]) == 3){
-                              //Validacion de horizontal y posiciones  
-                              if(barco4[2] == "H"){
-                                    matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i < int.Parse(barco4[3]); i++){
-                                    matrizJugador[bx4,by4+i] = " B4 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ4)){
+                                        matrizJugador[bxo4,byo4] = " X ";
                                     }
-                                }else if(barco4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco4[3]); i++){
-                                        matrizJugador[bx4+i,by4] = " B4 ";
+                                }
+                            }else if(int.Parse(barcoO4[3]) == 3){
+                            if(barcoO4[2] == "H"){
+                                    matrizJugador[bxo4,byo4] = " B4 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO4[3]); i++)
+                                    {
+                                        int a4 = bxo4;
+                                        int b4 = byo4+i;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizJugador[bxo4,byo4+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo4,byo4+i] = " B4 ";
+                                        }
                                     }
-                                }                                                     
-                            }else if(int.Parse(barco4[3]) == 4){
-                                if(barco4[2] == "H"){
-                                    matrizJugador[bx4,by4]=" B4 ";
-                                    for (int i = 1; i < int.Parse(barco4[3]); i++){
-                                    matrizJugador[bx4,by4+i] = " B4 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ4)){
+                                         matrizJugador[bxo4,byo4] = " X ";
+                                     }
+                                }else if(barcoO4[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO4[3]); i++)
+                                    {
+                                        int a4 = bxo4+i;
+                                        int b4 = byo4;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizJugador[bxo4+i,byo4] = " X ";
+                                        }else{
+                                            matrizJugador[bxo4+i,byo4] = " B4 ";
+                                        }
                                     }
-                                }else if(barco4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco4[3]); i++){
-                                        matrizJugador[bx4+i,by4] = " B4 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ4)){
+                                        matrizJugador[bxo4,byo4] = " X ";
                                     }
-                                }  
+                                }                                                      
+                            }else if(int.Parse(barcoO4[3]) == 4){
+                            if(barcoO4[2] == "H"){
+                                    matrizJugador[bxo4,byo4] = " B4 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO4[3]); i++)
+                                    {
+                                        int a4 = bxo4;
+                                        int b4 = byo4+i;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizJugador[bxo4,byo4+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo4,byo4+i] = " B4 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ4)){
+                                         matrizJugador[bxo4,byo4] = " X ";
+                                     }
+                                }else if(barcoO4[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO4[3]); i++)
+                                    {
+                                        int a4 = bxo4+i;
+                                        int b4 = byo4;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizJugador[bxo4+i,byo4] = " X ";
+                                        }else{
+                                            matrizJugador[bxo4+i,byo4] = " B4 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ4)){
+                                        matrizJugador[bxo4,byo4] = " X ";
+                                    }
+                                }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 4");
+                                Console.WriteLine("Fuera de rango barco no. 4 del oponente");
                             }
                         }
                     }
                     //Validacion barco 5
                         //Validacion de que no quepa
-                    if(bx5 >= matrizJugador.GetLength(0) || by5 >= matrizJugador.GetLength(1)){
-                        Console.WriteLine("Parece que el barco no.5 no cabe en el tablero");
+                    if(bxo5 >= matrizJugador.GetLength(0) || byo5 >= matrizJugador.GetLength(1)){
+                        Console.WriteLine("Parece que el barco no.5 no cabe en el tablero del oponente");
                     }else{
                         //Validacion de que no este repetido
-                        if(bx5 == bx1 && bx5 == bx2 && bx5 == bx3 && bx5 == bx4 && by5 == by1 && by5 == by2 && by5 == by3 && by5 == by4){
-                            Console.WriteLine("Parece que el barco no.5 esta duplicado");
+                        if(bxo5 == bxo1 && bxo5 == bxo2 && bxo5 == bxo3 && bxo5 == bxo4 && byo5 == byo1 && byo5 == byo2 && byo5 == byo3 && byo5 == byo4){
+                            Console.WriteLine("Parece que el barco no.5 esta duplicado del oponente");
                         }else{
                             //Validacion de que sea 2,3 y 4
-                            if(int.Parse(barco5[3]) == 2){
-                                if(barco5[2] == "H"){
-                                    matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i < int.Parse(barco5[3]); i++){
-                                    matrizJugador[bx5,by5+i] = " B5 ";
+                            if(int.Parse(barcoO5[3]) == 2){
+                                if(barcoO5[2] == "H"){
+                                    matrizJugador[bxo5,byo5] = " B5 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO5[3]); i++)
+                                    {
+                                        int a5 = bxo5;
+                                        int b5 = byo5+i;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizJugador[bxo5,byo5+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo5,byo5+i] = " B5 ";
+                                        }
                                     }
-                                }else if(barco5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco5[3]); i++){
-                                        matrizJugador[bx5+i,by5] = " B5 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ5)){
+                                         matrizJugador[bxo5,byo5] = " X ";
+                                     }
+                                }else if(barcoO5[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO5[3]); i++)
+                                    {
+                                        int a5 = bxo5+i;
+                                        int b5 = byo5;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizJugador[bxo5+i,byo5] = " X ";
+                                        }else{
+                                            matrizJugador[bxo5+i,byo5] = " B5 ";
+                                        }
                                     }
-                                }  
-                            }else if(int.Parse(barco5[3]) == 3){
-                            if(barco5[2] == "H"){
-                                    matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i < int.Parse(barco5[3]); i++){
-                                    matrizJugador[bx5,by5+i] = " B5 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ5)){
+                                        matrizJugador[bxo5,byo5] = " X ";
                                     }
-                                }else if(barco5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco5[3]); i++){
-                                        matrizJugador[bx5+i,by5] = " B5 ";
+                                }
+                            }else if(int.Parse(barcoO5[3]) == 3){
+                            if(barcoO5[2] == "H"){
+                                    matrizJugador[bxo5,byo5] = " B5 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO5[3]); i++)
+                                    {
+                                        int a5 = bxo5;
+                                        int b5 = byo5+i;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizJugador[bxo5,byo5+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo5,byo5+i] = " B5 ";
+                                        }
                                     }
-                                }                                               
-                            }else if(int.Parse(barco5[3]) == 4){
-                            if(barco5[2] == "H"){
-                                    matrizJugador[bx5,by5]=" B5 ";
-                                    for (int i = 1; i < int.Parse(barco5[3]); i++){
-                                    matrizJugador[bx5,by5+i] = " B5 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ5)){
+                                         matrizJugador[bxo5,byo5] = " X ";
+                                     }
+                                }else if(barcoO5[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO5[3]); i++)
+                                    {
+                                        int a5 = bxo5+i;
+                                        int b5 = byo5;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizJugador[bxo5+i,byo5] = " X ";
+                                        }else{
+                                            matrizJugador[bxo5+i,byo5] = " B5 ";
+                                        }
                                     }
-                                }else if(barco5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barco5[3]); i++){
-                                        matrizJugador[bx5+i,by5] = " B5 ";
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ5)){
+                                        matrizJugador[bxo5,byo5] = " X ";
+                                    }
+                                }                                            
+                            }else if(int.Parse(barcoO5[3]) == 4){
+                            if(barcoO5[2] == "H"){
+                                    matrizJugador[bxo5,byo5] = " B5 ";
+                                    //Validacion para escribir barcos de corrido   
+                                    for (int i = 1; i < int.Parse(barcoO5[3]); i++)
+                                    {
+                                        int a5 = bxo5;
+                                        int b5 = byo5+i;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizJugador[bxo5,byo5+i] = " X ";
+                                        }else{
+                                            matrizJugador[bxo5,byo5+i] = " B5 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarcoJ5)){
+                                         matrizJugador[bxo5,byo5] = " X ";
+                                     }
+                                }else if(barcoO5[2] == "V"){
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO5[3]); i++)
+                                    {
+                                        int a5 = bxo5+i;
+                                        int b5 = byo5;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizJugador[bxo5+i,byo5] = " X ";
+                                        }else{
+                                            matrizJugador[bxo5+i,byo5] = " B5 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarcoJ5)){
+                                        matrizJugador[bxo5,byo5] = " X ";
                                     }
                                 }
                             }else{
-                                Console.WriteLine("Fuera de rango barco no. 5");
+                                Console.WriteLine("Fuera de rango barco no. 5 del oponente");
                             }
                         }
                     }
