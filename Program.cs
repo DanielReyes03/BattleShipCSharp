@@ -110,9 +110,11 @@ namespace Proyecto_Naval
                 GenerarTXTOponente();
                 Console.WriteLine("-------------------------------------- Jugador ----------------------------------------------");
                 matrizInicial();
-                Console.WriteLine("Que cordenada deseas ? ");
-                string[] CordenadaAtaqueOponente = Console.ReadLine().Split(",");
+                string[] CordenadaAtaqueOponente = NumeroRandom().Split(",");
+                Console.WriteLine("Cordenada elegida " + CordenadaAtaqueOponente[0]+","+CordenadaAtaqueOponente[1]);
                 ModificarTXTOponente(CordenadaAtaqueOponente);
+                Console.WriteLine("Presiona enter para continuar ");
+                Console.ReadLine();
         }
         public static void matrizInicial(){
             Program instancia = new Program();
@@ -1199,6 +1201,13 @@ namespace Proyecto_Naval
                 Console.Write(exp);
                 throw;
             }
+        }
+        public static string NumeroRandom(){
+            Random rand = new Random();
+            int numero1 = rand.Next(1,9);
+            int numero2 = rand.Next(1,9);
+            string numeros = numero1+","+numero2;
+            return numeros;
         }
         
     }
