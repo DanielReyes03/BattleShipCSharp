@@ -434,7 +434,19 @@ namespace Proyecto_Naval
             string db = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";
             string cox1 = barcoO1[0];
             string coy2 = barcoO1[1];
+            string cobx2 = barcoO2[0];
+            string coby2 =  barcoO2[1];
+            string cobx3 = barcoO3[0];
+            string coby3 = barcoO3[1];
+            string cobx4 = barcoO4[0];
+            string coby4 = barcoO4[1];
+            string cobx5 = barcoO5[0];
+            string coby5 = barcoO5[1];
             string cordenadasBarco1 = cox1+","+coy2;
+            string cordenadasBarco2 = cobx2+","+coby2;
+            string cordenadasBarco3 = cobx3+","+coby3;
+            string cordenadasBarco4 = cobx4+","+coby4;
+            string cordenadasBarco5 = cobx5+","+coby5;
             int filas = int.Parse(dimnesionOponente[0]);
             int columnas = int.Parse(dimnesionOponente[1]);
             string[,] matrizOponente =  new string[filas,columnas];   
@@ -467,7 +479,6 @@ namespace Proyecto_Naval
                         //Validacion de que no este repetido
                         if(bxo1 == bxo2 && bxo1 == bxo3 && bxo1 == bxo4 && bxo1 == bxo5 && byo1 == byo2 && byo1 == byo3 && byo1 == byo4 && byo1 == byo5){
                             Console.WriteLine("Parece que el barco no.1 esta duplicado del oponente");
-
                         }else{
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(barcoO1[3]) == 2){
@@ -562,7 +573,7 @@ namespace Proyecto_Naval
                                     }
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco1)){
-                                         matrizOponente[bxo1+1,byo1] = " X ";
+                                         matrizOponente[bxo1,byo1] = " X ";
                                      }
                                 }else if(barcoO1[2] == "V"){
                                     //Validacion para escribir barcos de corrido
@@ -599,41 +610,113 @@ namespace Proyecto_Naval
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(barcoO2[3]) == 2){
                                 if(barcoO2[2] == "H"){
-                                    matrizOponente[bxo2,byo2]=" B2 ";
+                                    matrizOponente[bxo2,byo2] = " B2 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo2,byo2+i] = " B2 ";
+                                        int a2 = bxo2;
+                                        int b2 = byo2+i;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizOponente[bxo2,byo2+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo2,byo2+i] = " B2 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco2)){
+                                         matrizOponente[bxo2+1,byo2] = " X ";
+                                     }
                                 }else if(barcoO2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO2[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo2+i,byo2] = " B2 ";
+                                        int a2 = bxo2+i;
+                                        int b2 = byo2;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizOponente[bxo2+i,byo2] = " X ";
+                                        }else{
+                                            matrizOponente[bxo2+i,byo2] = " B2 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco2)){
+                                        matrizOponente[bxo1,byo1] = " X ";
                                     }
                                 }
                             }else if(int.Parse(barcoO2[3]) == 3){
                                  if(barcoO2[2] == "H"){
-                                    matrizOponente[bxo2,byo2]=" B2 ";
+                                    matrizOponente[bxo2,byo2] = " B2 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo2,byo2+i] = " B2 ";
+                                        int a2 = bxo2;
+                                        int b2 = byo2+i;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizOponente[bxo2,byo2+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo2,byo2+i] = " B2 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco2)){
+                                         matrizOponente[bxo2,byo2] = " X ";
+                                     }
                                 }else if(barcoO2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO2[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo2+i,byo2] = " B2 ";
+                                        int a2 = bxo2+i;
+                                        int b2 = byo2;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizOponente[bxo2+i,byo2] = " X ";
+                                        }else{
+                                            matrizOponente[bxo2+i,byo2] = " B2 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco2)){
+                                        matrizOponente[bxo2,byo2] = " X ";
                                     }
                                 }
                             }else if(int.Parse(barcoO2[3]) == 4){
                                  if(barcoO2[2] == "H"){
-                                    matrizOponente[bxo2,byo2]=" B2 ";
+                                    matrizOponente[bxo2,byo2] = " B2 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo2,byo2+i] = " B2 ";
+                                        int a2 = bxo2;
+                                        int b2 = byo2+i;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizOponente[bxo2,byo2+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo2,byo2+i] = " B2 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco2)){
+                                         matrizOponente[bxo2,byo2] = " X ";
+                                     }
                                 }else if(barcoO2[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO2[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo2+i,byo2] = " B2 ";
+                                        int a2 = bxo2+i;
+                                        int b2 = byo2;
+                                        string z2 = a2+","+b2;
+                                        if(File.ReadAllText(db).Contains(z2)){
+                                            matrizOponente[bxo2+i,byo2] = " X ";
+                                        }else{
+                                            matrizOponente[bxo2+i,byo2] = " B2 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco2)){
+                                        matrizOponente[bxo2,byo2] = " X ";
                                     }
                                 }
                             }else{
@@ -653,41 +736,113 @@ namespace Proyecto_Naval
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(barcoO3[3]) == 2){
                                 if(barcoO3[2] == "H"){
-                                    matrizOponente[bxo3,byo3]=" B3 ";
+                                    matrizOponente[bxo3,byo3] = " B3 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO3[3]); i++)
                                     {
-                                        matrizOponente[bxo3,byo3+i] = " B3 ";
+                                        int a3 = bxo3;
+                                        int b3 = byo3+i;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizOponente[bxo3,byo3+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo3,byo3+i] = " B3 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco3)){
+                                         matrizOponente[bxo3,byo3] = " X ";
+                                     }
                                 }else if(barcoO3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO3[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo3+i,byo3] = " B3 ";
+                                        int a3 = bxo3+i;
+                                        int b3 = byo3;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizOponente[bxo3+i,byo3] = " X ";
+                                        }else{
+                                            matrizOponente[bxo3+i,byo3] = " B3 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco3)){
+                                        matrizOponente[bxo3,byo3] = " X ";
                                     }
                                 }
                             }else if(int.Parse(barcoO3[3]) == 3){
                                 if(barcoO3[2] == "H"){
-                                    matrizOponente[bxo3,byo3]=" B3 ";
+                                    matrizOponente[bxo3,byo3] = " B3 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO3[3]); i++)
                                     {
-                                        matrizOponente[bxo3,byo3+i] = " B3 ";
+                                        int a3 = bxo3;
+                                        int b3 = byo3+i;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizOponente[bxo3,byo3+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo3,byo3+i] = " B3 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco3)){
+                                         matrizOponente[bxo3,byo3] = " X ";
+                                     }
                                 }else if(barcoO3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO3[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo3+i,byo3] = " B3 ";
+                                        int a3 = bxo3+i;
+                                        int b3 = byo3;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizOponente[bxo3+i,byo3] = " X ";
+                                        }else{
+                                            matrizOponente[bxo3+i,byo3] = " B3 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco3)){
+                                        matrizOponente[bxo3,byo3] = " X ";
                                     }
                                 }                                                       
                             }else if(int.Parse(barcoO3[3]) == 4){
                                 if(barcoO3[2] == "H"){
-                                    matrizOponente[bxo3,byo3]=" B3 ";
+                                    matrizOponente[bxo3,byo3] = " B3 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO3[3]); i++)
                                     {
-                                        matrizOponente[bxo3,byo3+i] = " B3 ";
+                                        int a3 = bxo3;
+                                        int b3 = byo3+i;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizOponente[bxo3,byo3+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo3,byo3+i] = " B3 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco3)){
+                                         matrizOponente[bxo3,byo3] = " X ";
+                                     }
                                 }else if(barcoO3[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO3[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO2[3]); i++)
                                     {
-                                        matrizOponente[bxo3+i,byo3] = " B3 ";
+                                        int a3 = bxo3+i;
+                                        int b3 = byo3;
+                                        string z3 = a3+","+b3;
+                                        if(File.ReadAllText(db).Contains(z3)){
+                                            matrizOponente[bxo3+i,byo3] = " X ";
+                                        }else{
+                                            matrizOponente[bxo3+i,byo3] = " B3 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco3)){
+                                        matrizOponente[bxo3,byo3] = " X ";
                                     }
                                 }
                             }else{
@@ -707,41 +862,113 @@ namespace Proyecto_Naval
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(barcoO4[3]) == 2){
                                 if(barcoO4[2] == "H"){
-                                    matrizOponente[bxo4,byo4]="B4 ";
+                                    matrizOponente[bxo4,byo4] = " B4 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO4[3]); i++)
                                     {
-                                        matrizOponente[bxo4,byo4+i] = " B4 ";
+                                        int a4 = bxo4;
+                                        int b4 = byo4+i;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizOponente[bxo4,byo4+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo4,byo4+i] = " B4 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco4)){
+                                         matrizOponente[bxo4,byo4] = " X ";
+                                     }
                                 }else if(barcoO4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO4[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO4[3]); i++)
                                     {
-                                        matrizOponente[bxo4+i,byo4] = " B4 ";
+                                        int a4 = bxo4+i;
+                                        int b4 = byo4;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizOponente[bxo4+i,byo4] = " X ";
+                                        }else{
+                                            matrizOponente[bxo4+i,byo4] = " B4 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco4)){
+                                        matrizOponente[bxo4,byo4] = " X ";
                                     }
                                 }
                             }else if(int.Parse(barcoO4[3]) == 3){
                             if(barcoO4[2] == "H"){
-                                    matrizOponente[bxo4,byo4]="B4 ";
+                                    matrizOponente[bxo4,byo4] = " B4 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO4[3]); i++)
                                     {
-                                        matrizOponente[bxo4,byo4+i] = " B4 ";
+                                        int a4 = bxo4;
+                                        int b4 = byo4+i;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizOponente[bxo4,byo4+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo4,byo4+i] = " B4 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco4)){
+                                         matrizOponente[bxo4,byo4] = " X ";
+                                     }
                                 }else if(barcoO4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO4[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO4[3]); i++)
                                     {
-                                        matrizOponente[bxo4+i,byo4] = " B4 ";
+                                        int a4 = bxo4+i;
+                                        int b4 = byo4;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizOponente[bxo4+i,byo4] = " X ";
+                                        }else{
+                                            matrizOponente[bxo4+i,byo4] = " B4 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco4)){
+                                        matrizOponente[bxo4,byo4] = " X ";
                                     }
                                 }                                                      
                             }else if(int.Parse(barcoO4[3]) == 4){
                             if(barcoO4[2] == "H"){
-                                    matrizOponente[bxo4,byo4]="B4 ";
+                                    matrizOponente[bxo4,byo4] = " B4 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO4[3]); i++)
                                     {
-                                        matrizOponente[bxo4,byo4+i] = " B4 ";
+                                        int a4 = bxo4;
+                                        int b4 = byo4+i;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizOponente[bxo4,byo4+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo4,byo4+i] = " B4 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco4)){
+                                         matrizOponente[bxo4,byo4] = " X ";
+                                     }
                                 }else if(barcoO4[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO4[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO4[3]); i++)
                                     {
-                                        matrizOponente[bxo4+i,byo4] = " B4 ";
+                                        int a4 = bxo4+i;
+                                        int b4 = byo4;
+                                        string z4 = a4+","+b4;
+                                        if(File.ReadAllText(db).Contains(z4)){
+                                            matrizOponente[bxo4+i,byo4] = " X ";
+                                        }else{
+                                            matrizOponente[bxo4+i,byo4] = " B4 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco4)){
+                                        matrizOponente[bxo4,byo4] = " X ";
                                     }
                                 }
                             }else{
@@ -761,41 +988,113 @@ namespace Proyecto_Naval
                             //Validacion de que sea 2,3 y 4
                             if(int.Parse(barcoO5[3]) == 2){
                                 if(barcoO5[2] == "H"){
-                                    matrizOponente[bxo5,byo5]=" B5 ";
+                                    matrizOponente[bxo5,byo5] = " B5 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO5[3]); i++)
                                     {
-                                        matrizOponente[bxo5,byo5+i] = " B5 ";
+                                        int a5 = bxo5;
+                                        int b5 = byo5+i;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizOponente[bxo5,byo5+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo5,byo5+i] = " B5 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco5)){
+                                         matrizOponente[bxo5,byo5] = " X ";
+                                     }
                                 }else if(barcoO5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO5[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO5[3]); i++)
                                     {
-                                        matrizOponente[bxo5+i,byo5] = " B5 ";
+                                        int a5 = bxo5+i;
+                                        int b5 = byo5;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizOponente[bxo5+i,byo5] = " X ";
+                                        }else{
+                                            matrizOponente[bxo5+i,byo5] = " B5 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco5)){
+                                        matrizOponente[bxo5,byo5] = " X ";
                                     }
                                 }
                             }else if(int.Parse(barcoO5[3]) == 3){
                             if(barcoO5[2] == "H"){
-                                    matrizOponente[bxo5,byo5]=" B5 ";
+                                    matrizOponente[bxo5,byo5] = " B5 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO5[3]); i++)
                                     {
-                                        matrizOponente[bxo5,byo5+i] = " B5 ";
+                                        int a5 = bxo5;
+                                        int b5 = byo5+i;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizOponente[bxo5,byo5+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo5,byo5+i] = " B5 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco5)){
+                                         matrizOponente[bxo5,byo5] = " X ";
+                                     }
                                 }else if(barcoO5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO5[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO5[3]); i++)
                                     {
-                                        matrizOponente[bxo5+i,byo5] = " B5 ";
+                                        int a5 = bxo5+i;
+                                        int b5 = byo5;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizOponente[bxo5+i,byo5] = " X ";
+                                        }else{
+                                            matrizOponente[bxo5+i,byo5] = " B5 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco5)){
+                                        matrizOponente[bxo5,byo5] = " X ";
                                     }
                                 }                                            
                             }else if(int.Parse(barcoO5[3]) == 4){
                             if(barcoO5[2] == "H"){
-                                    matrizOponente[bxo5,byo5]=" B5 ";
+                                    matrizOponente[bxo5,byo5] = " B5 ";
+                                    //Validacion para escribir barcos de corrido   
                                     for (int i = 1; i < int.Parse(barcoO5[3]); i++)
                                     {
-                                        matrizOponente[bxo5,byo5+i] = " B5 ";
+                                        int a5 = bxo5;
+                                        int b5 = byo5+i;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizOponente[bxo5,byo5+i] = " X ";
+                                        }else{
+                                            matrizOponente[bxo5,byo5+i] = " B5 ";
+                                        }
                                     }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                     if(File.ReadAllText(db).Contains(cordenadasBarco5)){
+                                         matrizOponente[bxo5,byo5] = " X ";
+                                     }
                                 }else if(barcoO5[2] == "V"){
-                                    for (int i = 1; i <= int.Parse(barcoO5[3]); i++)
+                                   //Validacion para escribir barcos de corrido
+                                    for (int i = 0; i < int.Parse(barcoO5[3]); i++)
                                     {
-                                        matrizOponente[bxo5+i,byo5] = " B5 ";
+                                        int a5 = bxo5+i;
+                                        int b5 = byo5;
+                                        string z5 = a5+","+b5;
+                                        if(File.ReadAllText(db).Contains(z5)){
+                                            matrizOponente[bxo5+i,byo5] = " X ";
+                                        }else{
+                                            matrizOponente[bxo5+i,byo5] = " B5 ";
+                                        }
+                                    }
+                                    //Aqui se hace la validacion del barco para ver si acerto o no
+                                    if(File.ReadAllText(db).Contains(cordenadasBarco5)){
+                                        matrizOponente[bxo5,byo5] = " X ";
                                     }
                                 }
                             }else{
