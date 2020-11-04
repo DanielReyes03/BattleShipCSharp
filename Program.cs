@@ -13,6 +13,7 @@ namespace Proyecto_Naval
         static void Main(string[] args)
         {        
            //instruccionesOponente();
+           //instruccionesJugador();
            Menu();
         }
         public static void Menu(){
@@ -68,14 +69,7 @@ namespace Proyecto_Naval
         }
         public static void GenerarJuego(string jugador ,string Oponente){
             Program instancia = new Program();
-            ConsoleKeyInfo cki;
             while (instancia.contadorJugador != 0 && instancia.contadorOponente != 0){
-                Console.WriteLine("Presiona enter para continuar");
-                cki = Console.ReadKey();
-                if (cki.Key == ConsoleKey.S){
-                    Console.WriteLine("Se presiono la letra S");
-                    Environment.Exit(0);
-                }
                 Console.WriteLine("----------------------------------------");
                 Console.WriteLine("Turnos restantes para "+ jugador + " " +  instancia.contadorJugador);
                 Console.WriteLine("----------------------------------------");
@@ -101,7 +95,13 @@ namespace Proyecto_Naval
                 Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
                 Console.WriteLine("Que cordenada deseas ? ");
                 string[] CordenadaAtaqueJugador = Console.ReadLine().Split(",");
-                ModificarTXTJugador(CordenadaAtaqueJugador);
+                string t = string.Join(",", CordenadaAtaqueJugador);
+                if(t.ToUpper() == "S"){
+                    Console.WriteLine("Salio");
+                    Environment.Exit(0);
+                }else{
+                    ModificarTXTJugador(CordenadaAtaqueJugador);
+                }
         }
         public static void instruccionesOponente(){
                 Program instancia = new Program();
@@ -813,7 +813,7 @@ namespace Proyecto_Naval
                 Console.WriteLine();
             }
         }
-        public static void matrizOponente(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
+      public static void matrizOponente(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
             Program instancia = new Program();
             string db = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";
             string cox1 = barcoO1[0];
