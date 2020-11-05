@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using System.Collections.Generic;
 namespace Proyecto_Naval
 {
     class Program
     {   
         private int contadorJugador = 3;
+        int puntaje;
+        int resultado;
         //Puntaje, Nombre
 
         private string[] jugador = {"0",""};
@@ -877,7 +880,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                          matrizOponente[bxo1+1,byo1] = " X ";
- 
+                                         
                                      }
                                 }else if(barcoO1[2] == "V"){
                                     //Validacion para escribir barcos de corrido
@@ -887,8 +890,8 @@ namespace Proyecto_Naval
                                         int b = byo1;
                                         string z = a+","+b;
                                         if(File.ReadAllText(db).Contains(z)){
-    
                                             matrizOponente[bxo1+i,byo1] = " X ";
+                                            AgregarPunto(z);
                                         }else{
                                             matrizOponente[bxo1+i,byo1] = " B1 ";
                                         }
@@ -896,7 +899,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                         matrizOponente[bxo1,byo1] = " X ";
-
+                                        AgregarPunto(cordenadasBarco1);
                                     }
                                 }
                             }else if(int.Parse(barcoO1[3]) == 3){
@@ -910,6 +913,7 @@ namespace Proyecto_Naval
                                         string z = a+","+b;
                                         if(File.ReadAllText(db).Contains(z)){
                                             matrizOponente[bxo1,byo1+i] = " X ";
+                                             AgregarPunto(z);
                                         }else{
                                             matrizOponente[bxo1,byo1+i] = " B1 ";
                                         }
@@ -917,6 +921,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                          matrizOponente[bxo1+1,byo1] = " X ";
+                                          AgregarPunto(cordenadasBarco1);
                                      }
                                 }else if(barcoO1[2] == "V"){
                                     //Validacion para escribir barcos de corrido
@@ -927,6 +932,7 @@ namespace Proyecto_Naval
                                         string z = a+","+b;
                                         if(File.ReadAllText(db).Contains(z)){
                                             matrizOponente[bxo1+i,byo1] = " X ";
+                                             AgregarPunto(z);
                                         }else{
                                             matrizOponente[bxo1+i,byo1] = " B1 ";
                                         }
@@ -934,6 +940,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                         matrizOponente[bxo1,byo1] = " X ";
+                                         AgregarPunto(cordenadasBarco1);
                                     }
                                 }
                             }else if(int.Parse(barcoO1[3]) == 4){
@@ -947,6 +954,7 @@ namespace Proyecto_Naval
                                         string z = a+","+b;
                                         if(File.ReadAllText(db).Contains(z)){
                                             matrizOponente[bxo1,byo1+i] = " X ";
+                                             AgregarPunto(z);
                                         }else{
                                             matrizOponente[bxo1,byo1+i] = " B1 ";
                                         }
@@ -954,6 +962,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                          matrizOponente[bxo1,byo1] = " X ";
+                                         AgregarPunto(cordenadasBarco1);
                                      }
                                 }else if(barcoO1[2] == "V"){
                                     //Validacion para escribir barcos de corrido
@@ -964,6 +973,7 @@ namespace Proyecto_Naval
                                         string z = a+","+b;
                                         if(File.ReadAllText(db).Contains(z)){
                                             matrizOponente[bxo1+i,byo1] = " X ";
+                                             AgregarPunto(z);
                                         }else{
                                             matrizOponente[bxo1+i,byo1] = " B1 ";
                                         }
@@ -971,6 +981,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                         matrizOponente[bxo1,byo1] = " X ";
+                                         AgregarPunto(cordenadasBarco1);
                                     }
                                 }
                             }else{
@@ -999,6 +1010,7 @@ namespace Proyecto_Naval
                                         string z2 = a2+","+b2;
                                         if(File.ReadAllText(db).Contains(z2)){
                                             matrizOponente[bxo2,byo2+i] = " X ";
+                                             AgregarPunto(z2);
                                         }else{
                                             matrizOponente[bxo2,byo2+i] = " B2 ";
                                         }
@@ -1006,6 +1018,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco2)){
                                          matrizOponente[bxo2+1,byo2] = " X ";
+                                         AgregarPunto(cordenadasBarco2);
                                      }
                                 }else if(barcoO2[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1016,6 +1029,7 @@ namespace Proyecto_Naval
                                         string z2 = a2+","+b2;
                                         if(File.ReadAllText(db).Contains(z2)){
                                             matrizOponente[bxo2+i,byo2] = " X ";
+                                            AgregarPunto(z2);
                                         }else{
                                             matrizOponente[bxo2+i,byo2] = " B2 ";
                                         }
@@ -1023,6 +1037,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco2)){
                                         matrizOponente[bxo1,byo1] = " X ";
+                                        AgregarPunto(cordenadasBarco2);
                                     }
                                 }
                             }else if(int.Parse(barcoO2[3]) == 3){
@@ -1036,6 +1051,7 @@ namespace Proyecto_Naval
                                         string z2 = a2+","+b2;
                                         if(File.ReadAllText(db).Contains(z2)){
                                             matrizOponente[bxo2,byo2+i] = " X ";
+                                            AgregarPunto(z2);
                                         }else{
                                             matrizOponente[bxo2,byo2+i] = " B2 ";
                                         }
@@ -1043,6 +1059,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco2)){
                                          matrizOponente[bxo2,byo2] = " X ";
+                                         AgregarPunto(cordenadasBarco2);
                                      }
                                 }else if(barcoO2[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1053,6 +1070,7 @@ namespace Proyecto_Naval
                                         string z2 = a2+","+b2;
                                         if(File.ReadAllText(db).Contains(z2)){
                                             matrizOponente[bxo2+i,byo2] = " X ";
+                                            AgregarPunto(z2);
                                         }else{
                                             matrizOponente[bxo2+i,byo2] = " B2 ";
                                         }
@@ -1060,6 +1078,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco2)){
                                         matrizOponente[bxo2,byo2] = " X ";
+                                        AgregarPunto(cordenadasBarco2);
                                     }
                                 }
                             }else if(int.Parse(barcoO2[3]) == 4){
@@ -1073,6 +1092,7 @@ namespace Proyecto_Naval
                                         string z2 = a2+","+b2;
                                         if(File.ReadAllText(db).Contains(z2)){
                                             matrizOponente[bxo2,byo2+i] = " X ";
+                                            AgregarPunto(z2);
                                         }else{
                                             matrizOponente[bxo2,byo2+i] = " B2 ";
                                         }
@@ -1080,6 +1100,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco2)){
                                          matrizOponente[bxo2,byo2] = " X ";
+                                         AgregarPunto(cordenadasBarco2);
                                      }
                                 }else if(barcoO2[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1090,6 +1111,7 @@ namespace Proyecto_Naval
                                         string z2 = a2+","+b2;
                                         if(File.ReadAllText(db).Contains(z2)){
                                             matrizOponente[bxo2+i,byo2] = " X ";
+                                            AgregarPunto(z2);
                                         }else{
                                             matrizOponente[bxo2+i,byo2] = " B2 ";
                                         }
@@ -1097,6 +1119,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco2)){
                                         matrizOponente[bxo2,byo2] = " X ";
+                                        AgregarPunto(cordenadasBarco2);
                                     }
                                 }
                             }else{
@@ -1125,6 +1148,7 @@ namespace Proyecto_Naval
                                         string z3 = a3+","+b3;
                                         if(File.ReadAllText(db).Contains(z3)){
                                             matrizOponente[bxo3,byo3+i] = " X ";
+                                            AgregarPunto(z3);
                                         }else{
                                             matrizOponente[bxo3,byo3+i] = " B3 ";
                                         }
@@ -1132,6 +1156,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco3)){
                                          matrizOponente[bxo3,byo3] = " X ";
+                                         AgregarPunto(cordenadasBarco3);
                                      }
                                 }else if(barcoO3[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1142,6 +1167,7 @@ namespace Proyecto_Naval
                                         string z3 = a3+","+b3;
                                         if(File.ReadAllText(db).Contains(z3)){
                                             matrizOponente[bxo3+i,byo3] = " X ";
+                                            AgregarPunto(z3);
                                         }else{
                                             matrizOponente[bxo3+i,byo3] = " B3 ";
                                         }
@@ -1149,6 +1175,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco3)){
                                         matrizOponente[bxo3,byo3] = " X ";
+                                        AgregarPunto(cordenadasBarco3);
                                     }
                                 }
                             }else if(int.Parse(barcoO3[3]) == 3){
@@ -1162,6 +1189,7 @@ namespace Proyecto_Naval
                                         string z3 = a3+","+b3;
                                         if(File.ReadAllText(db).Contains(z3)){
                                             matrizOponente[bxo3,byo3+i] = " X ";
+                                            AgregarPunto(z3);
                                         }else{
                                             matrizOponente[bxo3,byo3+i] = " B3 ";
                                         }
@@ -1169,6 +1197,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco3)){
                                          matrizOponente[bxo3,byo3] = " X ";
+                                         AgregarPunto(cordenadasBarco3);
                                      }
                                 }else if(barcoO3[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1179,6 +1208,7 @@ namespace Proyecto_Naval
                                         string z3 = a3+","+b3;
                                         if(File.ReadAllText(db).Contains(z3)){
                                             matrizOponente[bxo3+i,byo3] = " X ";
+                                            AgregarPunto(z3);
                                         }else{
                                             matrizOponente[bxo3+i,byo3] = " B3 ";
                                         }
@@ -1186,6 +1216,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco3)){
                                         matrizOponente[bxo3,byo3] = " X ";
+                                        AgregarPunto(cordenadasBarco3);
                                     }
                                 }                                                   
                             }else if(int.Parse(barcoO3[3]) == 4){
@@ -1199,6 +1230,7 @@ namespace Proyecto_Naval
                                         string z3 = a3+","+b3;
                                         if(File.ReadAllText(db).Contains(z3)){
                                             matrizOponente[bxo3,byo3+i] = " X ";
+                                            AgregarPunto(z3);
                                         }else{
                                             matrizOponente[bxo3,byo3+i] = " B3 ";
                                         }
@@ -1206,6 +1238,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco3)){
                                          matrizOponente[bxo3,byo3] = " X ";
+                                         AgregarPunto(cordenadasBarco3);
                                      }
                                 }else if(barcoO3[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1216,6 +1249,7 @@ namespace Proyecto_Naval
                                         string z3 = a3+","+b3;
                                         if(File.ReadAllText(db).Contains(z3)){
                                             matrizOponente[bxo3+i,byo3] = " X ";
+                                            AgregarPunto(z3);
                                         }else{
                                             matrizOponente[bxo3+i,byo3] = " B3 ";
                                         }
@@ -1223,6 +1257,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco3)){
                                         matrizOponente[bxo3,byo3] = " X ";
+                                        AgregarPunto(cordenadasBarco3);
                                     }
                                 }
                             }else{
@@ -1251,6 +1286,7 @@ namespace Proyecto_Naval
                                         string z4 = a4+","+b4;
                                         if(File.ReadAllText(db).Contains(z4)){
                                             matrizOponente[bxo4,byo4+i] = " X ";
+                                            AgregarPunto(z4);
                                         }else{
                                             matrizOponente[bxo4,byo4+i] = " B4 ";
                                         }
@@ -1258,6 +1294,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco4)){
                                          matrizOponente[bxo4,byo4] = " X ";
+                                         AgregarPunto(cordenadasBarco4);
                                      }
                                 }else if(barcoO4[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1268,6 +1305,7 @@ namespace Proyecto_Naval
                                         string z4 = a4+","+b4;
                                         if(File.ReadAllText(db).Contains(z4)){
                                             matrizOponente[bxo4+i,byo4] = " X ";
+                                            AgregarPunto(z4);
                                         }else{
                                             matrizOponente[bxo4+i,byo4] = " B4 ";
                                         }
@@ -1275,6 +1313,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco4)){
                                         matrizOponente[bxo4,byo4] = " X ";
+                                        AgregarPunto(cordenadasBarco4);
                                     }
                                 }
                             }else if(int.Parse(barcoO4[3]) == 3){
@@ -1288,6 +1327,7 @@ namespace Proyecto_Naval
                                         string z4 = a4+","+b4;
                                         if(File.ReadAllText(db).Contains(z4)){
                                             matrizOponente[bxo4,byo4+i] = " X ";
+                                            AgregarPunto(z4);
                                         }else{
                                             matrizOponente[bxo4,byo4+i] = " B4 ";
                                         }
@@ -1295,6 +1335,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco4)){
                                          matrizOponente[bxo4,byo4] = " X ";
+                                         AgregarPunto(cordenadasBarco4);
                                      }
                                 }else if(barcoO4[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1305,6 +1346,7 @@ namespace Proyecto_Naval
                                         string z4 = a4+","+b4;
                                         if(File.ReadAllText(db).Contains(z4)){
                                             matrizOponente[bxo4+i,byo4] = " X ";
+                                            AgregarPunto(z4);
                                         }else{
                                             matrizOponente[bxo4+i,byo4] = " B4 ";
                                         }
@@ -1312,6 +1354,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco4)){
                                         matrizOponente[bxo4,byo4] = " X ";
+                                        AgregarPunto(cordenadasBarco4);
                                     }
                                 }                                                      
                             }else if(int.Parse(barcoO4[3]) == 4){
@@ -1325,6 +1368,7 @@ namespace Proyecto_Naval
                                         string z4 = a4+","+b4;
                                         if(File.ReadAllText(db).Contains(z4)){
                                             matrizOponente[bxo4,byo4+i] = " X ";
+                                            AgregarPunto(z4);
                                         }else{
                                             matrizOponente[bxo4,byo4+i] = " B4 ";
                                         }
@@ -1332,6 +1376,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco4)){
                                          matrizOponente[bxo4,byo4] = " X ";
+                                         AgregarPunto(cordenadasBarco4);
                                      }
                                 }else if(barcoO4[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1342,6 +1387,7 @@ namespace Proyecto_Naval
                                         string z4 = a4+","+b4;
                                         if(File.ReadAllText(db).Contains(z4)){
                                             matrizOponente[bxo4+i,byo4] = " X ";
+                                            AgregarPunto(z4);
                                         }else{
                                             matrizOponente[bxo4+i,byo4] = " B4 ";
                                         }
@@ -1349,6 +1395,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco4)){
                                         matrizOponente[bxo4,byo4] = " X ";
+                                        AgregarPunto(cordenadasBarco4);
                                     }
                                 }
                             }else{
@@ -1377,6 +1424,7 @@ namespace Proyecto_Naval
                                         string z5 = a5+","+b5;
                                         if(File.ReadAllText(db).Contains(z5)){
                                             matrizOponente[bxo5,byo5+i] = " X ";
+                                            AgregarPunto(z5);
                                         }else{
                                             matrizOponente[bxo5,byo5+i] = " B5 ";
                                         }
@@ -1384,6 +1432,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco5)){
                                          matrizOponente[bxo5,byo5] = " X ";
+                                         AgregarPunto(cordenadasBarco5);
                                      }
                                 }else if(barcoO5[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1394,6 +1443,7 @@ namespace Proyecto_Naval
                                         string z5 = a5+","+b5;
                                         if(File.ReadAllText(db).Contains(z5)){
                                             matrizOponente[bxo5+i,byo5] = " X ";
+                                            AgregarPunto(z5);
                                         }else{
                                             matrizOponente[bxo5+i,byo5] = " B5 ";
                                         }
@@ -1401,6 +1451,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco5)){
                                         matrizOponente[bxo5,byo5] = " X ";
+                                        AgregarPunto(cordenadasBarco5);
                                     }
                                 }
                             }else if(int.Parse(barcoO5[3]) == 3){
@@ -1414,6 +1465,7 @@ namespace Proyecto_Naval
                                         string z5 = a5+","+b5;
                                         if(File.ReadAllText(db).Contains(z5)){
                                             matrizOponente[bxo5,byo5+i] = " X ";
+                                            AgregarPunto(z5);
                                         }else{
                                             matrizOponente[bxo5,byo5+i] = " B5 ";
                                         }
@@ -1421,6 +1473,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco5)){
                                          matrizOponente[bxo5,byo5] = " X ";
+                                         AgregarPunto(cordenadasBarco5);
                                      }
                                 }else if(barcoO5[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1431,6 +1484,7 @@ namespace Proyecto_Naval
                                         string z5 = a5+","+b5;
                                         if(File.ReadAllText(db).Contains(z5)){
                                             matrizOponente[bxo5+i,byo5] = " X ";
+                                            AgregarPunto(z5);
                                         }else{
                                             matrizOponente[bxo5+i,byo5] = " B5 ";
                                         }
@@ -1438,6 +1492,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco5)){
                                         matrizOponente[bxo5,byo5] = " X ";
+                                        AgregarPunto(cordenadasBarco5);
                                     }
                                 }                                            
                             }else if(int.Parse(barcoO5[3]) == 4){
@@ -1451,6 +1506,7 @@ namespace Proyecto_Naval
                                         string z5 = a5+","+b5;
                                         if(File.ReadAllText(db).Contains(z5)){
                                             matrizOponente[bxo5,byo5+i] = " X ";
+                                            AgregarPunto(z5);
                                         }else{
                                             matrizOponente[bxo5,byo5+i] = " B5 ";
                                         }
@@ -1458,6 +1514,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco5)){
                                          matrizOponente[bxo5,byo5] = " X ";
+                                         AgregarPunto(cordenadasBarco5);
                                      }
                                 }else if(barcoO5[2] == "V"){
                                    //Validacion para escribir barcos de corrido
@@ -1468,6 +1525,7 @@ namespace Proyecto_Naval
                                         string z5 = a5+","+b5;
                                         if(File.ReadAllText(db).Contains(z5)){
                                             matrizOponente[bxo5+i,byo5] = " X ";
+                                            AgregarPunto(z5);
                                         }else{
                                             matrizOponente[bxo5+i,byo5] = " B5 ";
                                         }
@@ -1475,6 +1533,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                     if(File.ReadAllText(db).Contains(cordenadasBarco5)){
                                         matrizOponente[bxo5,byo5] = " X ";
+                                        AgregarPunto(cordenadasBarco5);
                                     }
                                 }else{
                                       Console.WriteLine("Fuera de rango barco no. 5 del oponente");
@@ -1582,7 +1641,40 @@ namespace Proyecto_Naval
             string numeros = numero1+","+numero2;
             return numeros;
         }
-        
+
+        public static void AgregarPunto(string test){
+            HashSet<string> previousLines = new HashSet<string>();
+            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntos.txt"; 
+            try{    
+                 using(StreamWriter writer = new StreamWriter(Npath,true)){
+                     string a = test;
+                     writer.WriteLine(a);
+                 }     
+            }
+            catch (Exception exp){
+                Console.Write(exp);
+                throw;
+            }
+            EliminarLineasRepetidas();
+        }
+        public static void EliminarLineasRepetidas(){
+            var sr = new StreamReader(File.OpenRead("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntos.txt")); 
+            var sw = new StreamWriter(File.OpenWrite("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOut.txt")); 
+            var lines = new HashSet<int>(); 
+            while (!sr.EndOfStream) 
+            { 
+            string line = sr.ReadLine(); 
+            int hc = line.GetHashCode(); 
+            if(lines.Contains(hc)) 
+            continue; 
+
+            lines.Add(hc); 
+            sw.WriteLine(line); 
+            } 
+            sw.Flush(); 
+            sw.Close(); 
+            sr.Close(); 
+        }
         public static void PantallaFinal(){
             Console.WriteLine("JUEGO FINALIZADO");
             Console.WriteLine("------------------JUGADOR----------------------");
