@@ -1744,7 +1744,7 @@ namespace Proyecto_Naval
                 throw;
             }
             string origin = Npath;
-            string dest = instancia.jugadorOut;
+            string dest = instancia.oponenteOut;
             EliminarLineasRepetidas(origin, dest);
         }
         public static void EliminarLineasRepetidas(string origin, string dest){
@@ -1800,7 +1800,7 @@ namespace Proyecto_Naval
             Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
             Console.WriteLine("PUNTOS: " + lineCountJugador*10);
             Console.WriteLine("ACIERTOS: " + lineCountJugador +"/" + totalBarcosJugador);
-            }catch(FileNotFoundException e){
+            }catch(FileNotFoundException){
                  Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
                 Console.WriteLine("PUNTOS: 0");
                 Console.WriteLine("ACIERTOS: 0");
@@ -1811,11 +1811,19 @@ namespace Proyecto_Naval
             Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
             Console.WriteLine("PUNTOS: " + lineCountOponente*10);
             Console.WriteLine("ACIERTOS: " + lineCountOponente +"/" + totalBarcosOponente);   
-            }catch(FileNotFoundException e){
+            }catch(FileNotFoundException){
                 Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
                 Console.WriteLine("PUNTOS: 0");
                 Console.WriteLine("ACIERTOS: 0");
             }
+            try{
+                File.Delete(instancia.puntosJugador);
+                File.Delete(instancia.puntosOponente);
+                File.Delete(instancia.jugadorOut);
+                File.Delete(instancia.oponenteOut);
+                File.WriteAllText(instancia.ataquesJugador, String.Empty);
+                File.WriteAllText(instancia.ataquesOponente, String.Empty);
+            }catch(FileNotFoundException){}
         }
     }
 }
