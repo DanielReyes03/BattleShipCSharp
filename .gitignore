@@ -1,6 +1,5 @@
 #Files
 .DS_Store
 obj/*
+bin/*
 Proyecto Naval.csproj
-AtaquesJugador.txt
-AtaquesOponente.txt
