@@ -9,6 +9,14 @@ namespace Proyecto_Naval
         private int contadorJugador = 3;
         private string[] jugador = {"0",""};
         private string[] oponente = {"0","Richard BOT"};
+        private string jugadorOut = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosJugadorOut.txt";
+        private string oponenteOut = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponenteOut.txt";
+        private string puntosJugador = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosJugador.txt";
+        private string puntosOponente = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponente.txt";
+        private string configJugador = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/jugador.txt";
+        private string configOponente ="/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/oponente.txt" ;
+        private string ataquesOponente = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesOponente.txt";
+        private string ataquesJugador = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";
         static void Main(string[] args)
         {        
             Menu();
@@ -127,7 +135,7 @@ namespace Proyecto_Naval
         } 
       public static void matrizJugador(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
             Program instancia = new Program();
-            string db = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesOponente.txt";
+            string db = instancia.ataquesOponente;
             string coxJ1 = barcoO1[0];
             string coyJ2 = barcoO1[1];
             string cobxJ2 = barcoO2[0];
@@ -866,7 +874,7 @@ namespace Proyecto_Naval
         }
       public static void matrizOponente(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
             Program instancia = new Program();
-            string db = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";
+            string db = instancia.ataquesJugador;
             string cox1 = barcoO1[0];
             string coy2 = barcoO1[1];
             string cobx2 = barcoO2[0];
@@ -929,6 +937,7 @@ namespace Proyecto_Naval
                                         string z = a+","+b;
                                         if(File.ReadAllText(db).Contains(z)){
                                             matrizOponente[bxo1,byo1+i] = " X ";
+                                             AgregarPunto(z);
                                         }else{
                                             matrizOponente[bxo1,byo1+i] = " B1 ";
                                         }
@@ -936,7 +945,7 @@ namespace Proyecto_Naval
                                     //Aqui se hace la validacion del barco para ver si acerto o no
                                      if(File.ReadAllText(db).Contains(cordenadasBarco1)){
                                          matrizOponente[bxo1+1,byo1] = " X ";
-                                         
+                                          AgregarPunto(cordenadasBarco1);
                                      }
                                 }else if(barcoO1[2] == "V"){
                                     //Validacion para escribir barcos de corrido
@@ -1611,7 +1620,8 @@ namespace Proyecto_Naval
         }
 
         public static void GenerarTXTJugador(){
-            string nombre = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/jugador.txt";            
+            Program instancia = new Program();
+            string nombre = instancia.configJugador;            
             StreamReader reader = new StreamReader(nombre);
             string linea1 = reader.ReadLine(); 
             string[] dimnesion; 
@@ -1631,7 +1641,8 @@ namespace Proyecto_Naval
             matrizJugador(dimnesion,barco1,barco2,barco3,barco4,barco5);
         }
         public static void GenerarTXTOponente(){
-            string nombre = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/oponente.txt";            
+            Program instancia = new Program();
+            string nombre = instancia.configOponente;            
             StreamReader reader = new StreamReader(nombre);
             string linea1 = reader.ReadLine(); 
             string[] dimnesion; 
@@ -1648,13 +1659,14 @@ namespace Proyecto_Naval
             string[] barco4 = barco4s.Split(",");
             string[] barco5 = barco5s.Split(",");
             reader.ReadLine();
-            Thread.Sleep(5000);
+            Thread.Sleep(2);
             matrizOponente(dimnesion,barco1,barco2,barco3,barco4,barco5);
         }
 
         public static void ModificarTXTOponente(string[] ataque){
+            Program instancia = new Program();
             try{
-            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesOponente.txt";     
+            string Npath = instancia.ataquesOponente;     
                  using(StreamWriter writer = new StreamWriter(Npath,true)){
                      string a = string.Join(",",ataque);
                      writer.WriteLine(a);
@@ -1672,8 +1684,9 @@ namespace Proyecto_Naval
             }
         }
         public static void ModificarTXTJugador(string[] ataque){
+            Program instancia = new Program();
             try{
-            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";           
+            string Npath = instancia.ataquesJugador;           
                  using(StreamWriter writer = new StreamWriter(Npath,true)){
                      string a = string.Join(",",ataque);
                      writer.WriteLine(a);
@@ -1699,8 +1712,9 @@ namespace Proyecto_Naval
         }
 
         public static void AgregarPunto(string cordenada){
+            Program instancia = new Program();
             HashSet<string> previousLines = new HashSet<string>();
-            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosJugador.txt"; 
+            string Npath = instancia.puntosJugador; 
             try{    
                  using(StreamWriter writer = new StreamWriter(Npath,true)){
                      string a = cordenada;
@@ -1712,12 +1726,13 @@ namespace Proyecto_Naval
                 throw;
             }
             string origin = Npath;
-            string dest = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosJugadorOut.txt";
+            string dest = instancia.jugadorOut;
             EliminarLineasRepetidas(origin, dest);
         }
         public static void AgregarPuntoOponente(string cordenada){
+            Program instancia = new Program();
             HashSet<string> previousLines = new HashSet<string>();
-            string Npath = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponente.txt"; 
+            string Npath = instancia.puntosOponente; 
             try{    
                  using(StreamWriter writer = new StreamWriter(Npath,true)){
                      string a = cordenada;
@@ -1729,7 +1744,7 @@ namespace Proyecto_Naval
                 throw;
             }
             string origin = Npath;
-            string dest = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponenteOut.txt";
+            string dest = instancia.jugadorOut;
             EliminarLineasRepetidas(origin, dest);
         }
         public static void EliminarLineasRepetidas(string origin, string dest){
@@ -1772,14 +1787,16 @@ namespace Proyecto_Naval
             return total.ToString();
         }
         public static void PantallaFinal(){
+            Program instancia = new Program();
+            Thread.Sleep(2);
             Console.WriteLine("JUEGO FINALIZADO");
             Console.WriteLine("------------------JUGADOR----------------------");
             GenerarTXTJugador();
             Console.WriteLine("------------------OPONENTE---------------------");
             GenerarTXTOponente();
             try{
-            int lineCountJugador = File.ReadAllLines("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosJugadorOut.txt").Length;
-            string totalBarcosJugador = ObtenerTotalPosiciones("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/jugador.txt");
+            int lineCountJugador = File.ReadAllLines(instancia.jugadorOut).Length;
+            string totalBarcosJugador = ObtenerTotalPosiciones(instancia.configJugador);
             Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
             Console.WriteLine("PUNTOS: " + lineCountJugador*10);
             Console.WriteLine("ACIERTOS: " + lineCountJugador +"/" + totalBarcosJugador);
@@ -1789,8 +1806,8 @@ namespace Proyecto_Naval
                 Console.WriteLine("ACIERTOS: 0");
             }
             try{
-            int lineCountOponente = File.ReadAllLines("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponenteOut.txt").Length;
-            string totalBarcosOponente = ObtenerTotalPosiciones("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/oponente.txt");
+            int lineCountOponente = File.ReadAllLines(instancia.oponenteOut).Length;
+            string totalBarcosOponente = ObtenerTotalPosiciones(instancia.configOponente);
             Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
             Console.WriteLine("PUNTOS: " + lineCountOponente*10);
             Console.WriteLine("ACIERTOS: " + lineCountOponente +"/" + totalBarcosOponente);   
