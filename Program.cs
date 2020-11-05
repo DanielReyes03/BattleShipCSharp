@@ -11,7 +11,7 @@ namespace Proyecto_Naval
         private string[] oponente = {"0","Richard BOT"};
         static void Main(string[] args)
         {        
-            PantallaFinal();
+            Menu();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -1777,17 +1777,28 @@ namespace Proyecto_Naval
             GenerarTXTJugador();
             Console.WriteLine("------------------OPONENTE---------------------");
             GenerarTXTOponente();
+            try{
             int lineCountJugador = File.ReadAllLines("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosJugadorOut.txt").Length;
             string totalBarcosJugador = ObtenerTotalPosiciones("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/jugador.txt");
-            // int lineCountOponente = File.ReadAllLines("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponenteOut.txt").Length;
-            // string totalBarcosOponente = ObtenerTotalPosiciones("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/oponente.txt");
             Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
             Console.WriteLine("PUNTOS: " + lineCountJugador*10);
             Console.WriteLine("ACIERTOS: " + lineCountJugador +"/" + totalBarcosJugador);
+            }catch(FileNotFoundException e){
+                 Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
+                Console.WriteLine("PUNTOS: 0");
+                Console.WriteLine("ACIERTOS: 0");
+            }
+            try{
+            int lineCountOponente = File.ReadAllLines("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/puntosOponenteOut.txt").Length;
+            string totalBarcosOponente = ObtenerTotalPosiciones("/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/oponente.txt");
             Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
-            // Console.WriteLine("PUNTOS: " + lineCountOponente*10);
-            // Console.WriteLine("ACIERTOS: " + lineCountOponente +"/" + totalBarcosOponente);
-
+            Console.WriteLine("PUNTOS: " + lineCountOponente*10);
+            Console.WriteLine("ACIERTOS: " + lineCountOponente +"/" + totalBarcosOponente);   
+            }catch(FileNotFoundException e){
+                Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
+                Console.WriteLine("PUNTOS: 0");
+                Console.WriteLine("ACIERTOS: 0");
+            }
         }
     }
 }
