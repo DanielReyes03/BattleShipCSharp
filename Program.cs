@@ -71,20 +71,23 @@ namespace Proyecto_Naval
             GenerarJuego(jugadores.jugador[1],jugadores.oponente[1]);
         }
         public static void GenerarJuego(string jugador ,string Oponente){
-            Program instancia = new Program();
-            int totalAciertos = int.Parse(ObtenerTotalPosiciones(instancia.jugadorOut));
-            int totalBarcosJugador = int.Parse(ObtenerTotalPosiciones(instancia.configJugador));
-            while (totalAciertos < totalBarcosJugador){
-                Console.WriteLine("----------------------------------------");
-                Console.WriteLine("Turnos restantes para "+ jugador + " " +  instancia.contadorJugador);
-                Console.WriteLine("----------------------------------------");
-                instruccionesJugador();
-                instancia.quitarPuntoJugador();
-                instancia.LimpiarPantalla();
-                instruccionesOponente();
-                instancia.LimpiarPantalla();
+            try{
+                Program instancia = new Program();
+                int totalAciertos = int.Parse(ObtenerTotalPosiciones(instancia.jugadorOut));
+                int totalBarcosJugador = int.Parse(ObtenerTotalPosiciones(instancia.configJugador));
+                while (totalAciertos <= totalBarcosJugador){
+                    Console.WriteLine("----------------------------------------");
+                    Console.WriteLine("Turnos restantes para "+ jugador + " " +  instancia.contadorJugador);
+                    Console.WriteLine("----------------------------------------");
+                    instruccionesJugador();
+                    instancia.quitarPuntoJugador();
+                    instancia.LimpiarPantalla();
+                    instruccionesOponente();
+                    instancia.LimpiarPantalla();
+                }
+            }catch(IndexOutOfRangeException){
+                PantallaFinal();
             }
-            PantallaFinal();
         } 
         public static void instruccionesJugador(){
                 Program instancia = new Program();
@@ -135,7 +138,7 @@ namespace Proyecto_Naval
             }
             //Termina construccion de tabla
         } 
-      public static void matrizJugador(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
+        public static void matrizJugador(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
             Program instancia = new Program();
             string db = instancia.ataquesOponente;
             string coxJ1 = barcoO1[0];
@@ -874,7 +877,7 @@ namespace Proyecto_Naval
                 Console.WriteLine();
             }
         }
-      public static void matrizOponente(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
+        public static void matrizOponente(string[] dimnesionOponente, string[] barcoO1,string[] barcoO2,string[] barcoO3,string[] barcoO4,string[] barcoO5){
             Program instancia = new Program();
             string db = instancia.ataquesJugador;
             string cox1 = barcoO1[0];
@@ -1800,32 +1803,41 @@ namespace Proyecto_Naval
             GenerarTXTJugador();
             Console.WriteLine("------------------OPONENTE---------------------");
             GenerarTXTOponente();
+
             try{
             int lineCountJugador = File.ReadAllLines(instancia.jugadorOut).Length;
-            string totalBarcosJugador = ObtenerTotalPosiciones(instancia.configJugador);
+            string totalBarcosOponente = ObtenerTotalPosiciones(instancia.configOponente);
+            
             Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
             Console.WriteLine("PUNTOS: " + lineCountJugador*10);
-            Console.WriteLine("ACIERTOS: " + lineCountJugador +"/" + totalBarcosJugador);
+            Console.WriteLine("ACIERTOS: " + lineCountJugador +"/" + totalBarcosOponente);
             }catch(FileNotFoundException){
                  Console.WriteLine(" -------------- ESTADISTICAS DE JUGADOR ---------------");
                 Console.WriteLine("PUNTOS: 0");
                 Console.WriteLine("ACIERTOS: 0");
             }
+
+
+
             try{
             int lineCountOponente = File.ReadAllLines(instancia.oponenteOut).Length;
-            string totalBarcosOponente = ObtenerTotalPosiciones(instancia.configOponente);
+            string totalBarcosJugador = ObtenerTotalPosiciones(instancia.configJugador);
             Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
             Console.WriteLine("PUNTOS: " + lineCountOponente*10);
-            Console.WriteLine("ACIERTOS: " + lineCountOponente +"/" + totalBarcosOponente);   
+            Console.WriteLine("ACIERTOS: " + lineCountOponente +"/" + totalBarcosJugador);   
             }catch(FileNotFoundException){
                 Console.WriteLine(" -------------- ESTADISTICAS DE OPONENTE ---------------");
                 Console.WriteLine("PUNTOS: 0");
                 Console.WriteLine("ACIERTOS: 0");
             }
+
+
+
+
             try{
                 File.Delete(instancia.puntosJugador);
                 File.Delete(instancia.puntosOponente);
-                File.Delete(instancia.jugadorOut);
+                File.WriteAllText(instancia.jugadorOut, String.Empty);
                 File.Delete(instancia.oponenteOut);
                 File.WriteAllText(instancia.ataquesJugador, String.Empty);
                 File.WriteAllText(instancia.ataquesOponente, String.Empty);
