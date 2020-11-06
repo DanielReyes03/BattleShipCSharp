@@ -72,7 +72,9 @@ namespace Proyecto_Naval
         }
         public static void GenerarJuego(string jugador ,string Oponente){
             Program instancia = new Program();
-            while (instancia.contadorJugador != 0){
+            int totalAciertos = int.Parse(ObtenerTotalPosiciones(instancia.jugadorOut));
+            int totalBarcosJugador = int.Parse(ObtenerTotalPosiciones(instancia.configJugador));
+            while (totalAciertos < totalBarcosJugador){
                 Console.WriteLine("----------------------------------------");
                 Console.WriteLine("Turnos restantes para "+ jugador + " " +  instancia.contadorJugador);
                 Console.WriteLine("----------------------------------------");
@@ -1767,6 +1769,7 @@ namespace Proyecto_Naval
         }
         
         public static string ObtenerTotalPosiciones(string path){           
+            try{
             StreamReader reader = new StreamReader(path);
             string linea1 = reader.ReadLine(); 
             string[] dimnesion; 
@@ -1785,6 +1788,9 @@ namespace Proyecto_Naval
             reader.ReadLine();
             int total = int.Parse(barco1[3])+int.Parse(barco2[3])+int.Parse(barco3[3])+int.Parse(barco4[3])+int.Parse(barco5[3]);
             return total.ToString();
+            }catch(NullReferenceException){
+                return "0";
+            }
         }
         public static void PantallaFinal(){
             Program instancia = new Program();
