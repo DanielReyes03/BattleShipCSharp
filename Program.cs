@@ -19,7 +19,7 @@ namespace Proyecto_Naval
         private string ataquesJugador = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";
         static void Main(string[] args)
         {        
-            Menu();
+           Menu();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -73,9 +73,11 @@ namespace Proyecto_Naval
         public static void GenerarJuego(string jugador ,string Oponente){
             try{
                 Program instancia = new Program();
-                int totalAciertos = int.Parse(ObtenerTotalPosiciones(instancia.jugadorOut));
+                int totalAciertos = totalLineas(instancia.jugadorOut);
                 int totalBarcosJugador = int.Parse(ObtenerTotalPosiciones(instancia.configJugador));
-                while (totalAciertos <= totalBarcosJugador){
+                int totalAtaques = totalLineas(instancia.ataquesJugador);
+                int totalFallos = totalAtaques - totalAciertos;
+                while (totalAciertos <= totalBarcosJugador && totalFallos != 3){
                     Console.WriteLine("----------------------------------------");
                     Console.WriteLine("Turnos restantes para "+ jugador + " " +  instancia.contadorJugador);
                     Console.WriteLine("----------------------------------------");
@@ -85,6 +87,7 @@ namespace Proyecto_Naval
                     instruccionesOponente();
                     instancia.LimpiarPantalla();
                 }
+                PantallaFinal();
             }catch(IndexOutOfRangeException){
                 PantallaFinal();
             }
@@ -96,7 +99,6 @@ namespace Proyecto_Naval
                 GenerarTXTJugador();
                 Console.WriteLine("-------------------------------------- Oponente ----------------------------------------------");
                 matrizInicial();
-                Console.WriteLine("Es tu turno Jugador " + instancia.jugador[1]);
                 Console.WriteLine("Que cordenada deseas ? ");
                 string[] CordenadaAtaqueJugador = Console.ReadLine().Split(",");
                 string t = string.Join(",", CordenadaAtaqueJugador);
@@ -1771,6 +1773,11 @@ namespace Proyecto_Naval
             sr.Close(); 
         }
         
+        public static int totalLineas(string path){
+            var lineCount = File.ReadAllLines(path).Length;
+            return lineCount;
+        }
+
         public static string ObtenerTotalPosiciones(string path){           
             try{
             StreamReader reader = new StreamReader(path);
