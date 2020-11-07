@@ -19,7 +19,7 @@ namespace Proyecto_Naval
         private string ataquesJugador = "/Users/jose/Desktop/Jose/Tutorias/Andres c#/Proyecto_Naval/AtaquesJugador.txt";
         static void Main(string[] args)
         {        
-           Menu();
+        Menu();
         }
         public static void Menu(){
             Program instancia = new Program();
@@ -73,11 +73,8 @@ namespace Proyecto_Naval
         public static void GenerarJuego(string jugador ,string Oponente){
             try{
                 Program instancia = new Program();
-                int totalAciertos = totalLineas(instancia.jugadorOut);
-                int totalBarcosJugador = int.Parse(ObtenerTotalPosiciones(instancia.configJugador));
-                int totalAtaques = totalLineas(instancia.ataquesJugador);
-                int totalFallos = totalAtaques - totalAciertos;
-                while (totalAciertos <= totalBarcosJugador && totalFallos != 3){
+                int barcosTotales = int.Parse(ObtenerTotalPosiciones(instancia.configOponente));
+                while (AciertosTotales() <=  barcosTotales && IntentosFallidos() != 3){
                     Console.WriteLine("----------------------------------------");
                     Console.WriteLine("Turnos restantes para "+ jugador + " " +  instancia.contadorJugador);
                     Console.WriteLine("----------------------------------------");
@@ -1849,6 +1846,19 @@ namespace Proyecto_Naval
                 File.WriteAllText(instancia.ataquesJugador, String.Empty);
                 File.WriteAllText(instancia.ataquesOponente, String.Empty);
             }catch(FileNotFoundException){}
+        }
+    
+        public static int IntentosFallidos(){
+        Program instancia = new Program();
+        int totalAciertos = totalLineas(instancia.jugadorOut);
+        int totalAtaques = totalLineas(instancia.ataquesJugador);
+        int totalFallos = totalAtaques - totalAciertos;
+        return totalFallos;
+        }   
+        public static int AciertosTotales(){
+            Program instancia = new Program();
+            int totalAciertos = totalLineas(instancia.jugadorOut);
+            return totalAciertos;
         }
     }
 }
