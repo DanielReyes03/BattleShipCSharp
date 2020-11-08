@@ -33,12 +33,12 @@ The game begins with a small menu which allows you to choose whether to play 1v1
 
 
 #### 1. Board
-	Battleship works with a matrix, these matrices are built from the file player.txt and opponent.txt where the first line will determine the size of the matrix. 🎯
+Battleship works with a matrix, these matrices are built from the file player.txt and opponent.txt where the first line will determine the size of the matrix. 🎯
 
 #### 2. Ships
-	The position of the ships and how many spaces it will occupy is determined in the files player.txt and opponent.txt, which from line 3 to 7 is the configuration of the ships, the first two positions of each line will say in which coordinate they will be located, Next will be the position of the boat if it is horizontal or vertical and finally comes how many positions the boat will occupy which can be 2,3 and 4 🛳
+The position of the ships and how many spaces it will occupy is determined in the files player.txt and opponent.txt, which from line 3 to 7 is the configuration of the ships, the first two positions of each line will say in which coordinate they will be located, Next will be the position of the boat if it is horizontal or vertical and finally comes how many positions the boat will occupy which can be 2,3 and 4 🛳
 	
 #### 3. Points
-	The player will have infinite shots until he can knock down all the ships, but if the player is confused 3 times, the game will end, each hit will have a score of 10 points, the one with the highest score will be the winner 👾
+The player will have infinite shots until he can knock down all the ships, but if the player is confused 3 times, the game will end, each hit will have a score of 10 points, the one with the highest score will be the winner 👾
 	
 	
